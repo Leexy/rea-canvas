@@ -50,26 +50,22 @@ $(function () {
 
   var objects;
 
-  //action on the checkbox
-  $("div.categorie").click(function() {
-    $.ajax({
-      type: 'post',
-      url: 'afficheFlux.php',
-      data: {Category:$(this).text()}
-    }).done(function( result ) {
-      //change the flow
-      ctx.clearRect(0, 0, c.width, c.height);
-      objects = JSON.parse(result);
-      objects.forEach(function (object) {
-        var metrics = ctx.measureText(object.title);
-        var widthFlow = metrics.width;
-        object.width = metrics.width;
-        object.x1 = Math.floor(Math.random() * c.width);
-        object.x2 = object.x1 + object.width;
-        object.y = Math.floor(Math.random() * c.height);
-      });
-      draw();
+  $.ajax({
+    type: 'post',
+    url: 'afficheFlux.php',
+    data: {Category:chosenCategory}
+  }).done(function( result ) {
+    //change the flow
+    ctx.clearRect(0, 0, c.width, c.height);
+    objects = JSON.parse(result);
+    objects.forEach(function (object) {
+      var metrics = ctx.measureText(object.title);
+      object.width = metrics.width;
+      object.x1 = Math.floor(Math.random() * c.width);
+      object.x2 = object.x1 + object.width;
+      object.y = Math.floor(Math.random() * c.height);
     });
+    draw();
   });
 
   //Function that draws the ball 
@@ -167,17 +163,17 @@ function do_collision_detection()
   }
 
   var toDelete = [];
+  var ball = {
+    x: coords[0],
+    y: coords[1],
+  };
+  ball.left = ball.x;
+  ball.right = ball.x + diameter;
+  ball.top = ball.y;
+  ball.bottom = ball.y + diameter;
+
   objects.forEach(function (object) {
-    var ball = {
-      x: coords[0],
-      y: coords[1],
-      radius: radius
-    };
-    ball.left = ball.x;
-    ball.right = ball.x + diameter;
     if (ball.right >= object.x1 && ball.left <= object.x2) {
-      ball.top = ball.y;
-      ball.bottom = ball.y + diameter;
       if (ball.top <= object.y && ball.bottom >= object.y) {
         coords[1] = (velocity[1] > 0) ? object.y-diameter : object.y;
         velocity[0] *= bounce_factor;
@@ -186,6 +182,7 @@ function do_collision_detection()
       }
     }
   });
+
   toDelete.forEach(function (object) {
     var objectPos = objects.indexOf(object);
     if (objectPos !== -1) {

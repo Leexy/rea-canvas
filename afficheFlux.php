@@ -63,7 +63,7 @@ foreach ($tabFlux as $key => $array){
 	}
 }
 /* affichage de flux de categories random */
-$rand_keys = shuffle($tabFlux);
+shuffle($tabFlux);
 foreach(array_slice($tabFlux, 0, 3) as $key => $array) {
 	$rss = simplexml_load_file($array['url']);
 	if($rss)
@@ -75,8 +75,8 @@ foreach(array_slice($tabFlux, 0, 3) as $key => $array) {
 			$pubDate = strftime("%d-%m-%Y %H:%M", strtotime($published_on));
 			$arrayItems[] = array(
 				'title' => (string) $item->title,
-					'pubdate' => (string) $pubDate,
-					'category' => (string) $array['category']
+				'pubdate' => (string) $pubDate,
+				'category' => (string) $array['category']
 			);
 		}
 	}

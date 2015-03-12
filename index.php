@@ -24,10 +24,14 @@
     <div style="display: table-cell;"class="categorie" id="Economie">Economie</div><br/>
   </div>
 </div>
-	<canvas id="cvs" style="border:1px solid black"></canvas>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript">
+$("div.categorie").click(function() {
+  var cat = $(this).text();
+  document.location = "game.php?categorie="+encodeURIComponent(cat);
+  });
+</script>
 
 </body>
 
