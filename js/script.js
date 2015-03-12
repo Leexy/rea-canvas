@@ -43,11 +43,10 @@ $(function () {
   coords = [20, 300];  
 
   // User response related things
-  var drag = false;
-  var drag_coords = [0, 0];
   var throw_ = false;
   // throw/kick vector
   var throw_coords = [0, 0];
+  var throw_start = [0, 0];
 
   var objects;
 
@@ -104,7 +103,7 @@ $(function () {
     if (throw_)
     {
       ctx.save();
-      ctx.moveTo(coords[0], coords[1]);
+      ctx.moveTo(throw_start[0], throw_start[1]);
       ctx.lineTo(throw_coords[0], throw_coords[1]); 
       ctx.stroke();
       ctx.restore();
@@ -275,25 +274,14 @@ function startdragging(e)
   var x = e.offsetX === undefined ? e.originalEvent.layerX : e.offsetX;
   var y = e.offsetY === undefined ? e.originalEvent.layerY : e.offsetY;
 
-  if (e.which == 1)
-  {
-    if (x >= coords[0] && x <= coords[0] + diameter
-      &&
-      y >= coords[1] && y <= coords[1] + diameter
-      )
-    {
-      drag = true;
-      drag_coords = [x-radius, y-radius];
-    }
-
-  } 
-  else if (e.which == 3)
+  if (e.which == 3)
   {
     throw_ = true;
-    throw_coords = [x-radius, y-radius];
+    throw_coords = [x, y];
+    throw_start = [x, y];
   }
   
-  if (drag || throw_)
+  if (throw_)
     stop();
   
   return false;
@@ -309,25 +297,10 @@ $('#cvs').mousemove( function (e) {
   var x = e.offsetX === undefined ? e.originalEvent.layerX : e.offsetX;
   var y = e.offsetY === undefined ? e.originalEvent.layerY : e.offsetY;
 
-  if (!drag && !throw_)
+  if (!throw_)
     return;
   
-  if (throw_)
-    throw_coords = [x-radius, y-radius];
-  
-  else if (drag)
-  {
-    coords = [x-radius, y-radius];
-    
-    var dx, dy;
-    dx = x - drag_coords[0];
-    dy = y - drag_coords[1];
-    var dt = timestep;
-    // scale this down a bit or it seems like the user has super-strength
-    velocity = [dx/dt*0.2, dy/dt * 0.2];
-    drag_coords = [x-radius, y-radius];
-    
-  }
+  throw_coords = [x, y];
   
   draw();
   return false;  
@@ -336,23 +309,19 @@ $('#cvs').mousemove( function (e) {
 // Releases the drag event
 $('#cvs').mouseup( function (e) {
   
-  if (!drag && !throw_)
+  if (!throw_)
     return;
   
-  if (throw_)
-  {
-    var x = e.offsetX === undefined ? e.originalEvent.layerX : e.offsetX;
-    var y = e.offsetY === undefined ? e.originalEvent.layerY : e.offsetY;
+  var x = e.offsetX === undefined ? e.originalEvent.layerX : e.offsetX;
+  var y = e.offsetY === undefined ? e.originalEvent.layerY : e.offsetY;
 
-    var scale = 10;
-    var throw_vector_x = (coords[0]+radius-x)*scale;
-    var throw_vector_y = (coords[1]+radius-y)*scale;
-    forces.push( [throw_vector_x, throw_vector_y, 0.10] );
-    throw_ = false;
-    drag = false;
-  }
-  else if (drag)
-    drag = false;
+  var scale = 10;
+  var throw_vector_x = (throw_start[0]-x)*scale;
+  var throw_vector_y = (throw_start[1]-y)*scale;
+  forces.push( [throw_vector_x, throw_vector_y, 0.10] );
+  throw_ = false;
+  drag = false;
+
   
   go();
   
