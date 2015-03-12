@@ -86,28 +86,4 @@ foreach ($arrayFlux as $array){
 }
 echo json_encode($arrayItems);
 
-
-/* affichage des flux 
-if(isset($url)){
-	$rss = simplexml_load_file($url);
-	if($rss)
-	{
-		//echo '<h1>'.$rss->channel->title.'</h1>';
-		//echo '<li>'.$rss->channel->pubDate.'</li>';
-		$items = $rss->channel->item;
-		echo '<p style="color:'.$color.'">';
-		foreach($items as $item)
-		{
-			$title = $item->title;
-			//$link = $item->link;
-			$published_on = $item->pubDate;
-			//$description = $item->description;
-			$pubDate = strftime("%d-%m-%Y %H:%M", strtotime($published_on));
-			echo $title.' ('.$pubDate.')';
-			//echo '<p>'.$description.'</p>';
-		}
-		echo '</p><br/>';
-	}
-}*/
-
 ?>
