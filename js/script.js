@@ -29,7 +29,8 @@ $(function () {
 
   var mass = 10;
   var gravity = 10;
-  var radius = 100; // 100 = height of the image, if we draw an arc its the radius of the arc
+  var radius = 65; // 100 = height of the image, if we draw an arc its the radius of the arc
+  var diameter = radius*2;
 
   // Forces acting on the ball as array of:
   // [x, y, time]  if time==false, the force is always present.
@@ -39,7 +40,7 @@ $(function () {
   ];
 
   // set initial position
-  coords = [width/2, radius];  
+  coords = [20, 300];  
 
   // User response related things
   var drag = false;
@@ -140,28 +141,28 @@ function sgn(x)
 // and applying some damping according to bounce_factor
 function do_collision_detection()
 {
-  if (coords[0] <= radius)
+  if (coords[0] <= 0)
   {
-    coords[0] = radius;
+    coords[0] = 0;
     velocity[0] *= -bounce_factor;
     velocity[1] *= bounce_factor;
   }
   
-  if (coords[0] >= width-radius)
+  if (coords[0] >= width-diameter)
   {
-    coords[0] = width-radius;
+    coords[0] = width-diameter;
     velocity[0] *= -bounce_factor;
     velocity[1] *= bounce_factor;
   }
-  if (coords[1] <= radius)
+  if (coords[1] <= 0)
   {    
-    coords[1] = radius;
+    coords[1] = 0;
     velocity[0] *= bounce_factor;
     velocity[1] *= -bounce_factor;
   }
-  if (coords[1] > height-radius)
+  if (coords[1] > height-diameter)
   {
-    coords[1] = height-radius;  
+    coords[1] = height-diameter;  
     velocity[0] *= bounce_factor;
     velocity[1]*=-bounce_factor;
   }
@@ -173,13 +174,13 @@ function do_collision_detection()
       y: coords[1],
       radius: radius
     };
-    ball.left = ball.x - radius;
-    ball.right = ball.x + radius;
+    ball.left = ball.x;
+    ball.right = ball.x + diameter;
     if (ball.right >= object.x1 && ball.left <= object.x2) {
-      ball.top = ball.y - ball.radius;
-      ball.bottom = ball.y + ball.radius;
+      ball.top = ball.y;
+      ball.bottom = ball.y + diameter;
       if (ball.top <= object.y && ball.bottom >= object.y) {
-        coords[1] = (velocity[1] > 0) ? object.y - ball.radius : object.y + ball.radius;
+        coords[1] = (velocity[1] > 0) ? object.y-diameter : object.y;
         velocity[0] *= bounce_factor;
         velocity[1] *= -bounce_factor;
         toDelete.push(object);
@@ -276,20 +277,20 @@ function startdragging(e)
 
   if (e.which == 1)
   {
-    if (x >= coords[0]-radius && x <= coords[0] + radius
+    if (x >= coords[0] && x <= coords[0] + diameter
       &&
-      y >= coords[1]-radius && y <= coords[1] + radius
+      y >= coords[1] && y <= coords[1] + diameter
       )
     {
       drag = true;
-      drag_coords = [x, y];
+      drag_coords = [x-radius, y-radius];
     }
 
   } 
   else if (e.which == 3)
   {
     throw_ = true;
-    throw_coords = [x, y];
+    throw_coords = [x-radius, y-radius];
   }
   
   if (drag || throw_)
@@ -312,11 +313,11 @@ $('#cvs').mousemove( function (e) {
     return;
   
   if (throw_)
-    throw_coords = [x, y];
+    throw_coords = [x-radius, y-radius];
   
   else if (drag)
   {
-    coords = [x, y];
+    coords = [x-radius, y-radius];
     
     var dx, dy;
     dx = x - drag_coords[0];
@@ -324,7 +325,7 @@ $('#cvs').mousemove( function (e) {
     var dt = timestep;
     // scale this down a bit or it seems like the user has super-strength
     velocity = [dx/dt*0.2, dy/dt * 0.2];
-    drag_coords = [x, y];
+    drag_coords = [x-radius, y-radius];
     
   }
   
@@ -344,8 +345,8 @@ $('#cvs').mouseup( function (e) {
     var y = e.offsetY === undefined ? e.originalEvent.layerY : e.offsetY;
 
     var scale = 10;
-    var throw_vector_x = (coords[0]-x)*scale;
-    var throw_vector_y = (coords[1]-y)*scale;
+    var throw_vector_x = (coords[0]+radius-x)*scale;
+    var throw_vector_y = (coords[1]+radius-y)*scale;
     forces.push( [throw_vector_x, throw_vector_y, 0.10] );
     throw_ = false;
     drag = false;
