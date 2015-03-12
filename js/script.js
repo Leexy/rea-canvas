@@ -29,7 +29,7 @@ $(function () {
 
   var mass = 10;
   var gravity = 10;
-  var radius = 90; // 100 = height of the image, if we draw an arc its the radius of the arc
+  var radius = 100; // 100 = height of the image, if we draw an arc its the radius of the arc
 
   // Forces acting on the ball as array of:
   // [x, y, time]  if time==false, the force is always present.
@@ -51,11 +51,11 @@ $(function () {
   var objects;
 
   //action on the checkbox
-  $("input[type='checkbox']").change(function() {
+  $("div.categorie").click(function() {
     $.ajax({
       type: 'post',
       url: 'afficheFlux.php',
-      data: $('input[type=\'checkbox\']').serialize()
+      data: {Category:$(this).text()}
     }).done(function( result ) {
       //change the flow
       ctx.clearRect(0, 0, c.width, c.height);

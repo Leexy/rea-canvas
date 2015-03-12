@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-
   <meta charset="UTF-8">
-
   <title>Flux</title>
-
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
-	<input type="checkbox" name="Politique" id="Politique"/> <label for="Politique">Politique</label>
-  	<input type="checkbox" name="Culture" id="Culture"/> <label for="Culture">Culture</label>
-    <input type="checkbox" name="People" id="People"/> <label for="People">People</label>
-    <input type="checkbox" name="Sport" id="Sport"/> <label for="Sport">Sport</label>
-    <input type="checkbox" name="International" id="International"/> <label for="International">International</label>
-    <input type="checkbox" name="Sciences" id="Sciences"/> <label for="Sciences">Sciences</label>
-    <input type="checkbox" name="Cinema" id="Cinema"/> <label for="Cinema">Cinema</label>
-    <input type="checkbox" name="Technologie" id="Technologie"/> <label for="Technologie">Technologie</label>
-
+<div style="display: table">
+  <div style="display: table-row">
+  	<div style="display: table-cell;"class="categorie" id="Politique">Politique</div>
+  	<div style="display: table-cell;"class="categorie" id="Culture">Culture</div>
+    <div style="display: table-cell;"class="categorie" id="People">People</div>
+  </div>
+  <div style="display: table-row">
+    <div style="display: table-cell;"class="categorie" id="Sport">Sport</div>
+    <div style="display: table-cell;"class="categorie" id="International">International</div>
+    <div style="display: table-cell;"class="categorie" id="Sciences">Sciences</div><br/>
+  </div>
+  <div style="display: table-row">
+    <div style="display: table-cell;"class="categorie" id="Cinema">Cinema</div>
+    <div style="display: table-cell;"class="categorie" id="Technologie">Technologie</div>
+    <div style="display: table-cell;"class="categorie" id="Economie">Economie</div><br/>
+  </div>
+</div>
 	<canvas id="cvs" style="border:1px solid black"></canvas>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
