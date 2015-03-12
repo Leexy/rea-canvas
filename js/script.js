@@ -3,7 +3,7 @@ $(function () {
   var c=document.getElementById("cvs");
   var ctx=c.getContext("2d");
   c.width = document.body.clientWidth; //document.width is obsolete
-  c.height = "600";//document.body.clientHeight; //document.height is obsolete
+  c.height = document.body.clientHeight; //document.height is obsolete
   // Image of the ball
   var imageObj = new Image();
   imageObj.src = 'img/monster2.png';

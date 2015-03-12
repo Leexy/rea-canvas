@@ -13,7 +13,7 @@ if(!isset($_GET['categorie'])){
 </head>
 
 <body>
-	<canvas id="cvs" style="border:1px solid black"></canvas>
+	<canvas id="cvs"></canvas>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
