@@ -41,11 +41,12 @@ html,body{
 }
 #cvs{
 	background:url(../img/people.png);
-	height: 100%;
+	
 }
 .bottomDiv{
 	height: 50px;
 }
 img{
 	cursor: pointer;
+	margin:10px;
 }

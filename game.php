@@ -17,7 +17,12 @@ if(!isset($_GET['categorie'])){
 
 	<canvas id="cvs"></canvas>
 
-  <div class="bottomDiv"><a style="height:50px" href="index.php"><img src="img/home.png"/></a></div>
+  <div class="bottomDiv">
+    <a href="index.php"><img src="img/home.png"/></a>
+    <img src="img/pause.png"/>
+    <img src="img/rejouer.png"/>
+    <img src="img/son_off.png"/>
+  </div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
