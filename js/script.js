@@ -2,8 +2,8 @@ $(function () {
 
   var c=document.getElementById("cvs");
   var ctx=c.getContext("2d");
-  c.width = document.body.clientWidth; //document.width is obsolete
-  c.height = document.body.clientHeight; //document.height is obsolete
+  c.width = 1024;//document.body.clientWidth; //document.width is obsolete
+  c.height = 700;//document.body.clientHeight; //document.height is obsolete
   // Image of the ball
   var imageObj = new Image();
   imageObj.src = 'img/monster2.png';
@@ -82,12 +82,11 @@ $(function () {
     ctx.closePath();
     ctx.fill();
     ctx.restore();
-
     for (var i=0; i<objects.length; i++)
     {
       ctx.save();
       var o = objects[i];
-      ctx.font="20px Arial";
+      ctx.font=o.font;
       ctx.fillText(o.title,o.x1,o.y);
       //ctx.moveTo(o.x1,o.y);
       //ctx.lineTo(o.x2,o.y);
