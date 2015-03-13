@@ -49,17 +49,31 @@ $(function () {
   var throw_start = [0, 0];
 
   var objects;
-  var coordSet = [ 
-    { x: 10,  y: 205 },
-    { x: 10,  y: 525 },
-    { x: 360, y: 175 },
-    { x: 360, y: 270 },
-    { x: 360, y: 500 },
-    { x: 360, y: 605 },
-    { x: 720, y: 80  },
-    { x: 720, y: 305 },
-    { x: 720, y: 355 },
-    { x: 720, y: 680 },
+  var coordSet = [
+    [ 
+      { x: 10,  y: 205 },
+      { x: 10,  y: 525 },
+      { x: 360, y: 135 },
+      { x: 360, y: 270 },
+      { x: 360, y: 480 },
+      { x: 360, y: 605 },
+      { x: 720, y: 80  },
+      { x: 720, y: 325 },
+      { x: 720, y: 395 },
+      { x: 720, y: 680 },
+    ],
+    [
+      { x: 10,  y: 80 },
+      { x: 10,  y: 680 },
+      { x: 380, y: 175 },
+      { x: 380, y: 525 },
+      { x: 420, y: 132 },
+      { x: 420, y: 605 },
+      { x: 620, y: 50  },
+      { x: 620, y: 325 },
+      { x: 720, y: 405 },
+      { x: 720, y: 640 },
+    ]
   ];
 
   $.ajax({
@@ -70,9 +84,10 @@ $(function () {
     //change the flow
     ctx.clearRect(0, 0, width, height);
     objects = JSON.parse(result);
+    var randomCoord = Math.floor(Math.random() * coordSet.length);
     objects.forEach(function (object,i) {
-      object.x1 = coordSet[i].x;//Math.floor((Math.random() * width));
-      object.y = coordSet[i].y;//Math.floor(Math.random() * height);
+      object.x1 = coordSet[randomCoord][i].x;//Math.floor((Math.random() * width));
+      object.y = coordSet[randomCoord][i].y;//Math.floor(Math.random() * height);
     });
     draw();
   });
