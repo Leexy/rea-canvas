@@ -7,21 +7,21 @@
 </head>
 
 <body>
-<div style="display: table">
-  <div style="display: table-row">
-  	<div style="display: table-cell;"class="categorie" id="Politique">Politique</div>
-  	<div style="display: table-cell;"class="categorie" id="Culture">Culture</div>
-    <div style="display: table-cell;"class="categorie" id="People">People</div>
+<div class="table">
+  <div class="row">
+  	<div class="categorie" id="Politique">Politique</div>
+  	<div class="categorie" id="Culture">Culture</div>
+    <div class="categorie" id="People">People</div>
   </div>
-  <div style="display: table-row">
-    <div style="display: table-cell;"class="categorie" id="Sport">Sport</div>
-    <div style="display: table-cell;"class="categorie" id="International">International</div>
-    <div style="display: table-cell;"class="categorie" id="Sciences">Sciences</div><br/>
+  <div class="row">
+    <div class="categorie" id="Sport">Sport</div>
+    <div class="categorie" id="International">International</div>
+    <div class="categorie" id="Sciences">Sciences</div><br/>
   </div>
-  <div style="display: table-row">
-    <div style="display: table-cell;"class="categorie" id="Cinema">Cinema</div>
-    <div style="display: table-cell;"class="categorie" id="Technologie">Technologie</div>
-    <div style="display: table-cell;"class="categorie" id="Economie">Economie</div><br/>
+  <div class="row">
+    <div class="categorie" id="Cinema">Cinema</div>
+    <div class="categorie" id="Technologie">Technologie</div>
+    <div class="categorie" id="Economie">Economie</div><br/>
   </div>
 </div>
 
