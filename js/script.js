@@ -49,6 +49,18 @@ $(function () {
   var throw_start = [0, 0];
 
   var objects;
+  var coordSet = [ 
+    { x: 10,  y: 205 },
+    { x: 10,  y: 525 },
+    { x: 360, y: 175 },
+    { x: 360, y: 270 },
+    { x: 360, y: 500 },
+    { x: 360, y: 605 },
+    { x: 720, y: 80  },
+    { x: 720, y: 305 },
+    { x: 720, y: 355 },
+    { x: 720, y: 680 },
+  ];
 
   $.ajax({
     type: 'post',
@@ -58,12 +70,9 @@ $(function () {
     //change the flow
     ctx.clearRect(0, 0, width, height);
     objects = JSON.parse(result);
-    objects.forEach(function (object) {
-      var metrics = ctx.measureText(object.title);
-      object.width = metrics.width;
-      object.x1 = Math.floor((Math.random() * width)-object.width);
-      object.x2 = object.x1 + object.width;
-      object.y = Math.floor(Math.random() * height);
+    objects.forEach(function (object,i) {
+      object.x1 = coordSet[i].x;//Math.floor((Math.random() * width));
+      object.y = coordSet[i].y;//Math.floor(Math.random() * height);
     });
     draw();
   });
@@ -73,7 +82,6 @@ $(function () {
   {
     // clear the canvas
     ctx.clearRect(0, 0, width, height);
-    ctx.save();
     //ctx.fillStyle = "rgb(0, 0, 0)";
     // this draws the ball
     ctx.beginPath();
@@ -81,19 +89,25 @@ $(function () {
     ctx.drawImage(imageObj, coords[0], coords[1]); 
     ctx.closePath();
     ctx.fill();
-    ctx.restore();
     for (var i=0; i<objects.length; i++)
     {
-      ctx.save();
+      //ctx.save();
       var o = objects[i];
       ctx.font=o.font;
+      if(!o.width){
+        var metrics = ctx.measureText(o.title);
+        o.width = metrics.width;
+        if(o.x1+o.width > c.width){
+          o.x1 = c.width-o.width;
+        }
+        o.x2 = o.x1 + o.width;
+      }
       ctx.fillText(o.title,o.x1,o.y);
-      //ctx.moveTo(o.x1,o.y);
-      //ctx.lineTo(o.x2,o.y);
+      /*ctx.moveTo(o.x1,o.y);
+      ctx.lineTo(o.x2,o.y);
       ctx.stroke();
-      ctx.restore();
+      ctx.restore();*/
     }
-    
     // draw the throw/force vector
     if (throw_)
     {
