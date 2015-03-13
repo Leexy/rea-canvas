@@ -37,13 +37,14 @@ html,body{
     padding: 8px 12px;
 }
 .topDiv{
+	height:50px;
 }
 #cvs{
 	background:url(../img/people.png);
 	height: 100%;
 }
 .bottomDiv{
-
+	height: 50px;
 }
 img{
 	cursor: pointer;

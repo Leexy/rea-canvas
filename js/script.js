@@ -56,14 +56,14 @@ $(function () {
     data: {Category:chosenCategory}
   }).done(function( result ) {
     //change the flow
-    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.clearRect(0, 0, width, height);
     objects = JSON.parse(result);
     objects.forEach(function (object) {
       var metrics = ctx.measureText(object.title);
       object.width = metrics.width;
-      object.x1 = Math.floor(Math.random() * c.width);
+      object.x1 = Math.floor((Math.random() * width)-object.width);
       object.x2 = object.x1 + object.width;
-      object.y = Math.floor(Math.random() * c.height);
+      object.y = Math.floor(Math.random() * height);
     });
     draw();
   });
