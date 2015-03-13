@@ -20,7 +20,7 @@ if(!isset($_GET['categorie'])){
   <div class="bottomDiv">
     <a href="index.php"><img src="img/home.png"/></a>
     <img src="img/pause.png"/>
-    <img src="img/rejouer.png"/>
+    <a href=""><img src="img/rejouer.png"/></a>
     <img src="img/son_off.png"/>
   </div>
 
