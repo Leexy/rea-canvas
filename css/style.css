@@ -25,11 +25,12 @@ html,body{
 }
 .letter-img{
 	position:fixed;
+	z-index: -1;
     bottom:0px;
     left:0px;
     background: url('../img/lettres.png') repeat-x;
     width:100%;
-    height:262px ;
+    height:214px ;
 }
 
 /* choix des categories */
