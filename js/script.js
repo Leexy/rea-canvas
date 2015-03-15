@@ -49,6 +49,7 @@ $(function () {
   var throw_start = [0, 0];
 
   var objects;
+  /* tableau de coordonnee pour le positionnement des flux */
   var coordSet = [
     [ 
       { x: 10,  y: 205 },
@@ -75,7 +76,37 @@ $(function () {
       { x: 720, y: 640 },
     ]
   ];
+  /* hover des icones de jeu*/
+  $("#imgHome").hover(
+  function () {
+      $(this).attr("src","img/home_hover.png");
+  },
+  function () {
+      $(this).attr("src","img/home.png");
+  });
+  $("#imgRepeat").hover(
+  function () {
+      $(this).attr("src","img/rejouer_hover.png");
+  },
+  function () {
+      $(this).attr("src","img/rejouer.png");
+  });
+  $("#imgSoundOff").hover(
+  function () {
+      $(this).attr("src","img/son_off_hover.png");
+  },
+  function () {
+      $(this).attr("src","img/son_off.png");
+  });
+  $("#imgPause").hover(
+  function () {
+      $(this).attr("src","img/pause_hover.png");
+  },
+  function () {
+      $(this).attr("src","img/pause.png");
+  });
 
+  /* requete ajax pour recuperer les flux*/
   $.ajax({
     type: 'post',
     url: 'afficheFlux.php',
