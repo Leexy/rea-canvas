@@ -6,46 +6,8 @@ $(function () {
   var ctx=c.getContext("2d");
   c.width = 1024;//document.body.clientWidth; //document.width is obsolete
   c.height = 700;//document.body.clientHeight; //document.height is obsolete
-  // Simulation variables
-  var timestep = 0.005;
-  // Absolute time at last timestep
-  var t0 = 0;
-  var timer = null; // setInterval return handle.
   var width = $('#cvs').width(); /// width of canvas 
   var height = $('#cvs').height(); // height of canvas
-  var frame_counter = [0, 0]; // seconds, frames
-
-  // Physical variables
-
-  // position, velocity and acceleration vectors
-  var coords = [0, 0];
-  var last_coords = [0, 0];
-  var velocity = [0, 0];
-  var accel = [0, 0];
-
-  // Damping due to impacts
-  var bounce_factor = 0.8;
-
-  var mass = 10;
-  var gravity = 10;
-  var radius = 65; // 100 = height of the image, if we draw an arc its the radius of the arc
-  var diameter = radius*2;
-
-  // Forces acting on the ball as array of:
-  // [x, y, time]  if time==false, the force is always present.
-  // time is a 'time to live', in seconds.
-  var forces = [
-    [0, gravity*mass, false],  
-  ];
-
-  // set initial position
-  coords = [20, 300];  
-
-  // User response related things
-  var throw_ = false;
-  // throw/kick vector
-  var throw_coords = [0, 0];
-  var throw_start = [0, 0];
 
   var objects;
   /* tableau de coordonnee pour le positionnement des flux */
@@ -131,17 +93,10 @@ $(function () {
   {
     // clear the canvas
     ctx.clearRect(0, 0, width, height);
-    //ctx.fillStyle = "rgb(0, 0, 0)";
-    // this draws the ball
-    ctx.beginPath();
-    //ctx.arc(coords[0], coords[1], radius, 0, Math.PI*2, true); 
-    ctx.closePath();
-    ctx.fill();
 
     for (var i=0; i<objects.length; i++)
     {
-      //ctx.save();
-           
+      //ctx.save();      
       var o = objects[i];
       var currentX = o.x1;
       for(var j=0; j<o.words.length;j++){
@@ -151,20 +106,10 @@ $(function () {
         ctx.fillText(word.text,currentX,o.y);
         currentX += word.width + SPACE_SIZE;
       }
-
       /*ctx.moveTo(o.x1,o.y);
       ctx.lineTo(o.x2,o.y);
       ctx.stroke();
       ctx.restore();*/
-    }
-    // draw the throw/force vector
-    if (throw_)
-    {
-      ctx.save();
-      ctx.moveTo(throw_start[0], throw_start[1]);
-      ctx.lineTo(throw_coords[0], throw_coords[1]); 
-      ctx.stroke();
-      ctx.restore();
     }
   }
 
@@ -183,102 +128,6 @@ function get_colliding_objects(mousePos){
       hitZone.bottom >= object.y
     );
   });
-}
-// very simple collision detection and response for rebounding off the walls
-// and applying some damping according to bounce_factor
-function do_collision_detection()
-{
-
-  var ball = {
-    x: coords[0],
-    y: coords[1],
-  };
-  ball.left = ball.x;
-  ball.right = ball.x + diameter;
-  ball.top = ball.y;
-  ball.bottom = ball.y + diameter;
-  objects.forEach(function (object) {
-    if (ball.right >= object.x1 && ball.left <= object.x2) {
-      if (ball.top <= object.y && ball.bottom >= object.y) {
-        coords[1] = (velocity[1] > 0) ? object.y-diameter : object.y;
-        velocity[0] *= bounce_factor;
-        velocity[1] *= -bounce_factor;
-        //toDelete.push(object);
-      }
-    }
-  });
-
-}
-
-// evaluates the forces array, removes any 'dead' forces, and
-// returns the resolved force for this timestep.
-function do_forces(dt)
-{
-  var resolved = [0,0];
-  var new_forces = [];
-  for (var i=0; i<forces.length; i++)
-  {
-    var f = forces[i];
-
-    if (f[2] !== false)
-      f[2] -= dt;
-
-    resolved[0] += f[0];
-    resolved[1] += f[1];
-    if (f[2] < 0)
-      continue;    
-    new_forces.push(f);
-  }
-  forces = new_forces;
-  return resolved;
-}
-
-// Main loop
-function main()
-{
-  // calculate time elpased since last run
-  var t1 = new Date().getTime();
-  var dt = t1-t0;  
-  dt /= 1000.0;
-  if (dt < timestep)
-    dt = timestep;
-  
-  frame_counter[0] += dt;
-  frame_counter[1]++;
-  
-  if (frame_counter[0] > 1.0)
-  {
-    frame_counter[0] = 0;
-    $('#fps').html(frame_counter[1] + " frames per second");
-    frame_counter[1] = 0;
-  }
-  
-  t0 = t1;
-  
-  resolved_force = do_forces(dt);
-  move(dt, resolved_force);
-  //do_collision_detection();
-  last_coords[0] = coords[0];
-  last_coords[1] = coords[1];
-
-  draw();
-  
-}
-
-// initiates the main loop
-function go()
-{
-
-  t0 = new Date().getTime();
-  timer = setInterval(main, timestep*1000);
-}
-
-function stop()
-{
-  clearInterval(timer);
-  timer = null;
-  accel = [0, 0];
-  velocity = [0, 0];
 }
 
 // Disable rightclick so that we can use the right button as input on the canvas
