@@ -2,23 +2,23 @@
 
 /* tableau de flux */
 $tabFlux = array(
-		"Politique" => array("url" => "http://www.lemonde.fr/politique/rss_full.xml", "categorie" => "Politique", "font" => "1.2em Times"),
+		"Politique" => array("url" => "http://www.lemonde.fr/politique/rss_full.xml", "categorie" => "Politique"),
 
-	    "Economie" => array("url" => "http://syndication.lesechos.fr/rss/rss_politique_societe.xml", "categorie" => "Economie", "font" => "Italic 1.2em Palatino"),
+	    "Economie" => array("url" => "http://syndication.lesechos.fr/rss/rss_politique_societe.xml", "categorie" => "Economie"),
 
-	    "Technologie" => array("url" => "http://www.actinnovation.com/feed/", "categorie" =>  "Technologie", "font" => "Bold 0.8em Gill Sans"),
+	    "Technologie" => array("url" => "http://www.actinnovation.com/feed/", "categorie" =>  "Technologie"),
 
-	    "Cinema" => array("url" => "http://www.premiere.fr/var/premiere/storage/rss/cinema_actu.xml", "categorie" => "Cinema", "font" => "1.8em Andale Mono"),
+	    "Cinema" => array("url" => "http://www.premiere.fr/var/premiere/storage/rss/cinema_actu.xml", "categorie" => "Cinema"),
 
-	    "Sciences" => array("url" => "http://www.sciencesetavenir.fr/rss.xml", "categorie" => "Sciences", "font" => "1em Courrier"),
+	    "Sciences" => array("url" => "http://www.sciencesetavenir.fr/rss.xml", "categorie" => "Sciences"),
 
-	    "International" => array("url" => "http://www.lemonde.fr/international/rss_full.xml", "categorie" => "International", "font" => "Bold 1.4em Helvetica Narrow"),
+	    "International" => array("url" => "http://www.lemonde.fr/international/rss_full.xml", "categorie" => "International"),
 
-	    "Sport" => array("url" => "http://www.eurosport.fr/rss.xml", "categorie" => "Sport", "font" => "1.2em Impact"),
+	    "Sport" => array("url" => "http://www.eurosport.fr/rss.xml", "categorie" => "Sport"),
 
-	    "People" => array("url" => "http://www.purepeople.com/rss/news_t0.xml", "categorie" => "People", "font" => "1.2em Arial"),
+	    "People" => array("url" => "http://www.purepeople.com/rss/news_t0.xml", "categorie" => "People"),
 
-	    "Culture" => array("url" => "http://www.france24.com/fr/culture/rss/", "categorie" => "Culture", "font" => "1em Parkavenue"),
+	    "Culture" => array("url" => "http://www.france24.com/fr/culture/rss/", "categorie" => "Culture"),
 );
 
 
@@ -30,7 +30,7 @@ if(isset($_POST['Category'])){
 		if($rss)
 		{
 			$items = $rss->channel->item;
-			foreach($items->xpath('//item[position() <= 4]') as $item) // on limite le nombre de flux a 4 par categorie
+			foreach($items->xpath('//item[position() <= 10]') as $item) // on limite le nombre de flux a 4 par categorie
 			{
 				$published_on = $item->pubDate;
 				$pubDate = strftime("%d-%m-%Y %H:%M", strtotime($published_on));
@@ -38,14 +38,13 @@ if(isset($_POST['Category'])){
 					'title' => (string) $item->title,
  					'pubdate' => (string) $pubDate,
  					'category' => (string) $cat,
- 					'font' => (string) $tabFlux[$cat]['font']
 				);
 			}
-			unset($tabFlux[$cat]); // supprime le flux selectionne du tableau pour qu'il ne reapparaissent pas dans les flux random !
+			//unset($tabFlux[$cat]); // supprime le flux selectionne du tableau pour qu'il ne reapparaissent pas dans les flux random !
 		}
 }
 
-/* affichage de flux de categories random */
+/* affichage de flux de categories random 
 shuffle($tabFlux);
 foreach(array_slice($tabFlux, 0, 3, true) as $category => $flux) {
 	$rss = simplexml_load_file($flux['url']);
@@ -64,7 +63,7 @@ foreach(array_slice($tabFlux, 0, 3, true) as $category => $flux) {
 			);
 		}
 	}
-}
+}*/
 
 echo json_encode($arrayItems);
 

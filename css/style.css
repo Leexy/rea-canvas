@@ -99,10 +99,19 @@ html,body{
 	height:50px;
 }
 #cvs{
-	background:url("../img/people.png");	
+	background-color:white;	
+	border:1px solid;
+	padding:5px;
+	margin-left: 50px;
+	/*arrondir les coins en haut à gauche et en bas à droite*/
+	-moz-border-radius:10px 10px;
+	-webkit-border-radius:10px 10px;
+	border-radius:10px 10px;
+	cursor: url('../img/monstre_curseur.png'), pointer;
 }
 .bottomDiv{
 	height: 50px;
+	margin-left: 50px;
 }
 .icone{
 	cursor: pointer;

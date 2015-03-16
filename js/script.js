@@ -76,35 +76,14 @@ $(function () {
       { x: 720, y: 640 },
     ]
   ];
-  /* hover des icones de jeu*/
-  $("#imgHome").hover(
-  function () {
-      $(this).attr("src","img/home_hover.png");
-  },
-  function () {
-      $(this).attr("src","img/home.png");
-  });
-  $("#imgRepeat").hover(
-  function () {
-      $(this).attr("src","img/rejouer_hover.png");
-  },
-  function () {
-      $(this).attr("src","img/rejouer.png");
-  });
-  $("#imgSoundOff").hover(
-  function () {
-      $(this).attr("src","img/son_off_hover.png");
-  },
-  function () {
-      $(this).attr("src","img/son_off.png");
-  });
-  $("#imgPause").hover(
-  function () {
-      $(this).attr("src","img/pause_hover.png");
-  },
-  function () {
-      $(this).attr("src","img/pause.png");
-  });
+  /* tableau de type de police */
+  var fontType = ['Bold','Italic', 'normal'];
+  /* tableau taille de police*/
+  var fontSize = ['0.8em', '1em', '1.2em', '1.4em', '1.5em', '1.8em'];
+  /* tableau de police */
+  var font = ['Times', 'Palatino', 'Gill Sans', 'Andale Mono', 'Courrier', 'Helvetica Narrow' ,'Impact', 'Arial', 'Lucida console'];
+  /* tableau de couleur */
+  var fontColor = ['#469991', '#78ccc4', '#3f6e8a', '#5ea4cc', '#384c78', '#bf5458' ,'#ff7075'];
 
   /* requete ajax pour recuperer les flux*/
   $.ajax({
@@ -117,8 +96,16 @@ $(function () {
     objects = JSON.parse(result);
     var randomCoord = Math.floor(Math.random() * coordSet.length);
     objects.forEach(function (object,i) {
+      $('#game').css("background-image", "url(img/"+object.category+".png)"); 
+      
       object.x1 = coordSet[randomCoord][i].x;//Math.floor((Math.random() * width));
       object.y = coordSet[randomCoord][i].y;//Math.floor(Math.random() * height);
+      var randomFontType = Math.floor(Math.random() * fontType.length);
+      var randomFontSize = Math.floor(Math.random() * fontSize.length);
+      var randomFont = Math.floor(Math.random() * font.length);     
+      var randomColor = Math.floor(Math.random() * fontColor.length);
+      object.font = fontType[randomFontType]+" "+fontSize[randomFontSize]+" "+font[randomFont];
+      object.txtColor = fontColor[randomColor];
     });
     draw();
   });
@@ -132,14 +119,17 @@ $(function () {
     // this draws the ball
     ctx.beginPath();
     //ctx.arc(coords[0], coords[1], radius, 0, Math.PI*2, true); 
-    ctx.drawImage(imageObj, coords[0], coords[1]); 
+    //ctx.drawImage(imageObj, coords[0], coords[1]); 
     ctx.closePath();
     ctx.fill();
+
     for (var i=0; i<objects.length; i++)
     {
       //ctx.save();
+           
       var o = objects[i];
-      ctx.font=o.font;
+      ctx.font= o.font;
+      ctx.fillStyle = o.txtColor;
       if(!o.width){
         var metrics = ctx.measureText(o.title);
         o.width = metrics.width;
@@ -183,7 +173,6 @@ function move(dt, resolved_force)
     velocity[1] + 0.5* (accel[1] + accel_new[1])*dt];
   
   accel = accel_new;
-    
 }
 
 function sgn(x)
@@ -230,14 +219,13 @@ function do_collision_detection()
   ball.right = ball.x + diameter;
   ball.top = ball.y;
   ball.bottom = ball.y + diameter;
-
   objects.forEach(function (object) {
     if (ball.right >= object.x1 && ball.left <= object.x2) {
       if (ball.top <= object.y && ball.bottom >= object.y) {
         coords[1] = (velocity[1] > 0) ? object.y-diameter : object.y;
         velocity[0] *= bounce_factor;
         velocity[1] *= -bounce_factor;
-        toDelete.push(object);
+        //toDelete.push(object);
       }
     }
   });
@@ -297,7 +285,7 @@ function main()
   
   resolved_force = do_forces(dt);
   move(dt, resolved_force);
-  do_collision_detection();
+  //do_collision_detection();
   last_coords[0] = coords[0];
   last_coords[1] = coords[1];
 
@@ -352,7 +340,7 @@ $('#cvs').bind("contextmenu", function(e) { return false });
 $('#cvs').mousemove( function (e) {
   var x = e.offsetX === undefined ? e.originalEvent.layerX : e.offsetX;
   var y = e.offsetY === undefined ? e.originalEvent.layerY : e.offsetY;
-
+do_collision_detection();
   if (!throw_)
     return;
   
@@ -384,4 +372,33 @@ $('#cvs').mouseup( function (e) {
   return false;                      
 });
 
+  /* hover des icones de jeu*/
+  $("#imgHome").hover(
+  function () {
+      $(this).attr("src","img/home_hover.png");
+  },
+  function () {
+      $(this).attr("src","img/home.png");
+  });
+  $("#imgRepeat").hover(
+  function () {
+      $(this).attr("src","img/rejouer_hover.png");
+  },
+  function () {
+      $(this).attr("src","img/rejouer.png");
+  });
+  $("#imgSoundOff").hover(
+  function () {
+      $(this).attr("src","img/son_off_hover.png");
+  },
+  function () {
+      $(this).attr("src","img/son_off.png");
+  });
+  $("#imgPause").hover(
+  function () {
+      $(this).attr("src","img/pause_hover.png");
+  },
+  function () {
+      $(this).attr("src","img/pause.png");
+  });
 });

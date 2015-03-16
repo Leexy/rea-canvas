@@ -12,14 +12,13 @@ if(!isset($_GET['categorie'])){
   <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
-<body>
+<body id="game">
   <div class="topDiv"></div>
 
 	<canvas id="cvs"></canvas>
 
   <div class="bottomDiv">
     <a href="index.php"><img class="icone" id="imgHome" src="img/home.png"/></a>
-    <img class="icone" id="imgPause" src="img/pause.png"/>
     <a href=""><img class="icone" id="imgRepeat" src="img/rejouer.png"/></a>
     <img class="icone" id="imgSoundOff" src="img/son_off.png"/>
   </div>
