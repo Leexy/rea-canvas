@@ -1,5 +1,7 @@
 $(function () {
   var SPACE_SIZE = 5;
+  var CURSOR_IMAGE_WIDTH = 56;
+  var CURSOR_IMAGE_HEIGHT = 64;
   var c=document.getElementById("cvs");
   var ctx=c.getContext("2d");
   c.width = 1024;//document.body.clientWidth; //document.width is obsolete
@@ -166,37 +168,27 @@ $(function () {
     }
   }
 
+function get_colliding_objects(mousePos){
+  var hitZone = {
+    left: mousePos.x,
+    right: mousePos.x + CURSOR_IMAGE_WIDTH,
+    top: mousePos.y,
+    bottom: mousePos.y + CURSOR_IMAGE_HEIGHT,
+  };
+  return objects.filter(function (object) {
+    return (
+      hitZone.left <= object.x2 &&
+      hitZone.right >= object.x1 &&
+      hitZone.top <= object.y &&
+      hitZone.bottom >= object.y
+    );
+  });
+}
 // very simple collision detection and response for rebounding off the walls
 // and applying some damping according to bounce_factor
 function do_collision_detection()
 {
-  if (coords[0] <= 0)
-  {
-    coords[0] = 0;
-    velocity[0] *= -bounce_factor;
-    velocity[1] *= bounce_factor;
-  }
-  
-  if (coords[0] >= width-diameter)
-  {
-    coords[0] = width-diameter;
-    velocity[0] *= -bounce_factor;
-    velocity[1] *= bounce_factor;
-  }
-  if (coords[1] <= 0)
-  {    
-    coords[1] = 0;
-    velocity[0] *= bounce_factor;
-    velocity[1] *= -bounce_factor;
-  }
-  if (coords[1] > height-diameter)
-  {
-    coords[1] = height-diameter;  
-    velocity[0] *= bounce_factor;
-    velocity[1]*=-bounce_factor;
-  }
 
-  var toDelete = [];
   var ball = {
     x: coords[0],
     y: coords[1],
@@ -216,12 +208,6 @@ function do_collision_detection()
     }
   });
 
-  toDelete.forEach(function (object) {
-    var objectPos = objects.indexOf(object);
-    if (objectPos !== -1) {
-      objects.splice(objectPos, 1);
-    }
-  });
 }
 
 // evaluates the forces array, removes any 'dead' forces, and
@@ -302,15 +288,13 @@ $('#cvs').bind("contextmenu", function(e) { return false });
 $('#cvs').mousemove( function (e) {
   var x = e.offsetX === undefined ? e.originalEvent.layerX : e.offsetX;
   var y = e.offsetY === undefined ? e.originalEvent.layerY : e.offsetY;
-  if (!throw_)
-    return;
-  
-  throw_coords = [x, y];
-  
-  draw();
+  var collidingObjects = get_colliding_objects({ x: x, y: y });
+  if (collidingObjects.length >= 2) {
+    console.log('I must do something!');
+    draw();
+  }
   return false;  
 });
-
 
   /* hover des icones de jeu*/
   $("#imgHome").hover(
