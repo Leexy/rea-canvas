@@ -1,12 +1,9 @@
 $(function () {
-
+  var SPACE_SIZE = 5;
   var c=document.getElementById("cvs");
   var ctx=c.getContext("2d");
   c.width = 1024;//document.body.clientWidth; //document.width is obsolete
   c.height = 700;//document.body.clientHeight; //document.height is obsolete
-  // Image of the ball
-  var imageObj = new Image();
-  imageObj.src = 'img/monster2.png';
   // Simulation variables
   var timestep = 0.005;
   // Absolute time at last timestep
@@ -97,15 +94,32 @@ $(function () {
     var randomCoord = Math.floor(Math.random() * coordSet.length);
     objects.forEach(function (object,i) {
       $('#game').css("background-image", "url(img/"+object.category+".png)"); 
-      
       object.x1 = coordSet[randomCoord][i].x;//Math.floor((Math.random() * width));
       object.y = coordSet[randomCoord][i].y;//Math.floor(Math.random() * height);
-      var randomFontType = Math.floor(Math.random() * fontType.length);
-      var randomFontSize = Math.floor(Math.random() * fontSize.length);
-      var randomFont = Math.floor(Math.random() * font.length);     
+      var isUpperCase = false;
       var randomColor = Math.floor(Math.random() * fontColor.length);
-      object.font = fontType[randomFontType]+" "+fontSize[randomFontSize]+" "+font[randomFont];
-      object.txtColor = fontColor[randomColor];
+      object.words = object.title.split(' ').map(function(word){
+        if (!isUpperCase) {
+          isUpperCase = Math.random() < 0.2;
+        }
+        var randomFontType = Math.floor(Math.random() * fontType.length);
+        var randomFontSize = Math.floor(Math.random() * fontSize.length);
+        var randomFont = Math.floor(Math.random() * font.length);     
+        word = {
+          text: isUpperCase ? word.toUpperCase() : word,
+          font: fontType[randomFontType]+" "+fontSize[randomFontSize]+" "+font[randomFont],
+          fontColor: fontColor[randomColor],
+        };
+        ctx.font = word.font;
+        word.width = ctx.measureText(word.text).width;
+
+        return word;
+      });
+      object.width = object.words.reduce(function (sum, word) { return sum + word.width; }, 0) + SPACE_SIZE * object.words.length;
+      if (object.x1 + object.width >= c.width) {
+        object.x1 = c.width - object.width;
+      }
+      object.x2 = object.x1 + object.width;
     });
     draw();
   });
@@ -119,7 +133,6 @@ $(function () {
     // this draws the ball
     ctx.beginPath();
     //ctx.arc(coords[0], coords[1], radius, 0, Math.PI*2, true); 
-    //ctx.drawImage(imageObj, coords[0], coords[1]); 
     ctx.closePath();
     ctx.fill();
 
@@ -128,17 +141,15 @@ $(function () {
       //ctx.save();
            
       var o = objects[i];
-      ctx.font= o.font;
-      ctx.fillStyle = o.txtColor;
-      if(!o.width){
-        var metrics = ctx.measureText(o.title);
-        o.width = metrics.width;
-        if(o.x1+o.width > c.width){
-          o.x1 = c.width-o.width;
-        }
-        o.x2 = o.x1 + o.width;
+      var currentX = o.x1;
+      for(var j=0; j<o.words.length;j++){
+        var word = o.words[j];
+        ctx.font= word.font;
+        ctx.fillStyle = word.fontColor;
+        ctx.fillText(word.text,currentX,o.y);
+        currentX += word.width + SPACE_SIZE;
       }
-      ctx.fillText(o.title,o.x1,o.y);
+
       /*ctx.moveTo(o.x1,o.y);
       ctx.lineTo(o.x2,o.y);
       ctx.stroke();
@@ -154,31 +165,6 @@ $(function () {
       ctx.restore();
     }
   }
-
-// Moves the ball for the given timestep with the overall force given as 
-// resolved_force (http://en.wikipedia.org/wiki/Verlet_integration#Velocity_Verlet)
-function move(dt, resolved_force)
-{  
-  var coords_new = [coords[0] + velocity[0]*dt + 0.5*accel[0]*dt*dt,
-            coords[1] + velocity[1]*dt + 0.5*accel[1]*dt*dt
-            ];
-  // f = ma          
-  var accel_new = [ resolved_force[0]/(mass*dt), 
-    resolved_force[1]/(mass*dt)];
-
-
-  coords = coords_new;
-  
-  velocity = [velocity[0] + 0.5* (accel[0] + accel_new[0])*dt,
-    velocity[1] + 0.5* (accel[1] + accel_new[1])*dt];
-  
-  accel = accel_new;
-}
-
-function sgn(x)
-{
-  return x < 0 ? -1 : 1;
-}
 
 // very simple collision detection and response for rebounding off the walls
 // and applying some damping according to bounce_factor
@@ -309,30 +295,6 @@ function stop()
   velocity = [0, 0];
 }
 
-
-// UI handlers follow
-// responds to mouse dragging
-function startdragging(e)
-{
-  // mouse input uses layerX in Firefox/chrome and offsetX in Opera
-  var x = e.offsetX === undefined ? e.originalEvent.layerX : e.offsetX;
-  var y = e.offsetY === undefined ? e.originalEvent.layerY : e.offsetY;
-
-  if (e.which == 3)
-  {
-    throw_ = true;
-    throw_coords = [x, y];
-    throw_start = [x, y];
-  }
-  
-  if (throw_)
-    stop();
-  
-  return false;
-}
-$('#cvs').mousedown(startdragging);
-$('#cvs').click(function(e) { return false });
-
 // Disable rightclick so that we can use the right button as input on the canvas
 $('#cvs').bind("contextmenu", function(e) { return false });
 
@@ -340,7 +302,6 @@ $('#cvs').bind("contextmenu", function(e) { return false });
 $('#cvs').mousemove( function (e) {
   var x = e.offsetX === undefined ? e.originalEvent.layerX : e.offsetX;
   var y = e.offsetY === undefined ? e.originalEvent.layerY : e.offsetY;
-do_collision_detection();
   if (!throw_)
     return;
   
@@ -350,27 +311,6 @@ do_collision_detection();
   return false;  
 });
 
-// Releases the drag event
-$('#cvs').mouseup( function (e) {
-  
-  if (!throw_)
-    return;
-  
-  var x = e.offsetX === undefined ? e.originalEvent.layerX : e.offsetX;
-  var y = e.offsetY === undefined ? e.originalEvent.layerY : e.offsetY;
-
-  var scale = 10;
-  var throw_vector_x = (throw_start[0]-x)*scale;
-  var throw_vector_y = (throw_start[1]-y)*scale;
-  forces.push( [throw_vector_x, throw_vector_y, 0.10] );
-  throw_ = false;
-  drag = false;
-
-  
-  go();
-  
-  return false;                      
-});
 
   /* hover des icones de jeu*/
   $("#imgHome").hover(
