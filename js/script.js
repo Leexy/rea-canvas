@@ -183,12 +183,13 @@ $('#cvs').mousemove( function (e) {
     return false;   
   }
   else{
-    //console.log(x+" "+y+" img : "+imgX+" img y "+imgY);
-    
-    if(x <= imgX+133 && x >= imgX && y<= imgY - 5 && y >= imgY - 5 )//&& y == (imgY/2))
-      { console.log(x+" "+y)}
-      //cursorOn=true;
-      //$( "#cvs" ).addClass("cursor");
+    if(x <= imgX+100 && x >= imgX+60){
+      if(y<= imgY+101&& y >= imgY){ 
+        cursorOn=true;
+        $( "#cvs" ).addClass("cursor");
+        draw();
+      }
+    }
   }
 });
 
