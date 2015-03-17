@@ -167,8 +167,10 @@ $('#cvs').bind("contextmenu", function(e) { return false });
 
 // called every time the mouse is moved
 $('#cvs').mousemove( function (e) {
-  var x = e.offsetX === undefined ? e.originalEvent.layerX : e.offsetX;
-  var y = e.offsetY === undefined ? e.originalEvent.layerY : e.offsetY;
+  var targetOffset = $(e.target).offset();
+  var x = e.offsetX === undefined ? e.clientX-targetOffset.left : e.offsetX;
+  var y = e.offsetY === undefined ? e.clientY-targetOffset.top : e.offsetY;
+  console.log(x+" "+y);
   if(cursorOn){
     var collidingObjects = get_colliding_objects({ x: x, y: y });
     if (collidingObjects.length >= 2) {
