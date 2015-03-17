@@ -159,9 +159,10 @@ function random_insert(element, array) {
   array.splice(get_random_index(array.length), 0, element);
 }
 
-function capture(){
-  window.open('', document.getElementById('cvs').toDataURL());
-}
+$("#capture").on("click", function(){
+  //$("#captureImg").attr("src",c.toDataURL());
+  window.open(c.toDataURL(),"Capture");
+});
 // Disable rightclick so that we can use the right button as input on the canvas
 $('#cvs').bind("contextmenu", function(e) { return false });
 
@@ -170,7 +171,6 @@ $('#cvs').mousemove( function (e) {
   var targetOffset = $(e.target).offset();
   var x = e.offsetX === undefined ? e.clientX-targetOffset.left : e.offsetX;
   var y = e.offsetY === undefined ? e.clientY-targetOffset.top : e.offsetY;
-  console.log(x+" "+y);
   if(cursorOn){
     var collidingObjects = get_colliding_objects({ x: x, y: y });
     if (collidingObjects.length >= 2) {

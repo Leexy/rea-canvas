@@ -19,7 +19,7 @@ if(!isset($_GET['categorie'])){
     </div>
 
     <div class="rigthDiv">
-      <img class="icone" onclick="" id="capture" src="img/capture.png"/><br/>
+      <img class="icone" id="capture" src="img/capture.png"/><br/>
       <a href="index.php"><img class="icone" id="imgHome" src="img/home.png"/></a><br/>
       <a href=""><img class="icone" id="imgRepeat" src="img/rejouer.png"/></a><br/>
       <img class="icone" id="imgSoundOff" src="img/son_off.png"/><br/>
