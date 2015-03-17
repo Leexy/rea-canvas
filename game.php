@@ -13,14 +13,18 @@ if(!isset($_GET['categorie'])){
 </head>
 
 <body id="game">
-  <div class="topDiv"></div>
+  <div class="content">
+    <div class="leftDiv">
+      <canvas id="cvs"></canvas>
+    </div>
 
-	<canvas id="cvs"></canvas>
-
-  <div class="bottomDiv">
-    <a href="index.php"><img class="icone" id="imgHome" src="img/home.png"/></a>
-    <a href=""><img class="icone" id="imgRepeat" src="img/rejouer.png"/></a>
-    <img class="icone" id="imgSoundOff" src="img/son_off.png"/>
+    <div class="rigthDiv">
+      <img class="icone" id="capture" src="img/capture.png"/>
+      <a href="index.php"><img class="icone" id="imgHome" src="img/home.png"/></a><br/>
+      <a href=""><img class="icone" id="imgRepeat" src="img/rejouer.png"/></a><br/>
+      <img class="icone" id="imgSoundOff" src="img/son_off.png"/><br/>
+      <span class="copyright">&copy; 2015<br/> Audrey Mothu,<br/> Agathe Grunberg</span>
+    </div>
   </div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>

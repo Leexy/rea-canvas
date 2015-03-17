@@ -66,7 +66,7 @@ $(function () {
     objects = JSON.parse(result);
     var randomCoord = get_random_index(coordSet.length);
     objects.forEach(function (object,i) {
-      $('#game').css("background-image", "url(img/"+object.category+".png)"); 
+      $( ".leftDiv" ).addClass(object.category);
       object.x1 = coordSet[randomCoord][i].x;
       object.y = coordSet[randomCoord][i].y;
       var isUpperCase = false;
@@ -187,6 +187,13 @@ $('#cvs').mousemove( function (e) {
   },
   function () {
       $(this).attr("src","img/pause.png");
+  });
+  $("#capture").hover(
+  function () {
+      $(this).attr("src","img/capture_hover.png");
+  },
+  function () {
+      $(this).attr("src","img/capture.png");
   });
 
   function compute_object_width(object) {
