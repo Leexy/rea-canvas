@@ -5,11 +5,15 @@ $(function () {
   var OBJECTS_GAP = CURSOR_IMAGE_HEIGHT - 10;
   var c=document.getElementById("cvs");
   var ctx=c.getContext("2d");
-  c.width = 1024;//document.body.clientWidth; //document.width is obsolete
+  c.width = document.body.clientWidth-350;//1024;//document.body.clientWidth; //document.width is obsolete
   c.height = 700;//document.body.clientHeight; //document.height is obsolete
   var width = $('#cvs').width(); /// width of canvas 
   var height = $('#cvs').height(); // height of canvas
-
+  var img = new Image();   // Crée un nouvel objet Image
+  img.src = 'img/start.png'; // Définit le chemin vers sa source
+  var imgX = (c.width/2)-65.5;
+  var imgY = (c.height/2)-66.5;
+  var cursorOn = false;
   var objects;
   /* tableau de coordonnee pour le positionnement des flux */
   var coordSet = [
@@ -91,6 +95,7 @@ $(function () {
       compute_object_width(object);
     });
     draw();
+    ctx.drawImage(img, imgX, imgY);
   });
 
   //Function that draws the ball 
@@ -98,7 +103,6 @@ $(function () {
   {
     // clear the canvas
     ctx.clearRect(0, 0, width, height);
-
     for (var i=0; i<objects.length; i++)
     {
       //ctx.save();      
@@ -139,24 +143,53 @@ function extract_random_word(words) {
   return words.splice(get_random_index(words.length), 1)[0];
 }
 
+function compute_object_width(object) {
+  object.width = object.words.reduce(function (sum, word) { return sum + word.width; }, 0) + SPACE_SIZE * object.words.length;
+  if (object.x1 + object.width >= c.width) {
+    object.x1 = c.width - object.width;
+  }
+  object.x2 = object.x1 + object.width;
+}
+
+function get_random_index(length) {
+  return Math.floor(Math.random() * length);
+}
+
+function random_insert(element, array) {
+  array.splice(get_random_index(array.length), 0, element);
+}
+
+function capture(){
+  window.open('', document.getElementById('cvs').toDataURL());
+}
 // Disable rightclick so that we can use the right button as input on the canvas
 $('#cvs').bind("contextmenu", function(e) { return false });
 
-// called every time the mouse is moved, deals with dragging of the ball and throw vectors
+// called every time the mouse is moved
 $('#cvs').mousemove( function (e) {
   var x = e.offsetX === undefined ? e.originalEvent.layerX : e.offsetX;
   var y = e.offsetY === undefined ? e.originalEvent.layerY : e.offsetY;
-  var collidingObjects = get_colliding_objects({ x: x, y: y });
-  if (collidingObjects.length >= 2) {
-    var firstWord = extract_random_word(collidingObjects[0].words);
-    var secondWord = extract_random_word(collidingObjects[1].words);
-    random_insert(firstWord, collidingObjects[1].words);
-    random_insert(secondWord, collidingObjects[0].words);
-    compute_object_width(collidingObjects[0]);
-    compute_object_width(collidingObjects[1]);
-    draw();
+  if(cursorOn){
+    var collidingObjects = get_colliding_objects({ x: x, y: y });
+    if (collidingObjects.length >= 2) {
+      var firstWord = extract_random_word(collidingObjects[0].words);
+      var secondWord = extract_random_word(collidingObjects[1].words);
+      random_insert(firstWord, collidingObjects[1].words);
+      random_insert(secondWord, collidingObjects[0].words);
+      compute_object_width(collidingObjects[0]);
+      compute_object_width(collidingObjects[1]);
+      draw();
+    }
+    return false;   
   }
-  return false;  
+  else{
+    //console.log(x+" "+y+" img : "+imgX+" img y "+imgY);
+    
+    if(x <= imgX+133 && x >= imgX && y<= imgY - 5 && y >= imgY - 5 )//&& y == (imgY/2))
+      { console.log(x+" "+y)}
+      //cursorOn=true;
+      //$( "#cvs" ).addClass("cursor");
+  }
 });
 
   /* hover des icones de jeu*/
@@ -196,19 +229,4 @@ $('#cvs').mousemove( function (e) {
       $(this).attr("src","img/capture.png");
   });
 
-  function compute_object_width(object) {
-    object.width = object.words.reduce(function (sum, word) { return sum + word.width; }, 0) + SPACE_SIZE * object.words.length;
-    if (object.x1 + object.width >= c.width) {
-      object.x1 = c.width - object.width;
-    }
-    object.x2 = object.x1 + object.width;
-  }
-
-  function get_random_index(length) {
-    return Math.floor(Math.random() * length);
-  }
-
-  function random_insert(element, array) {
-    array.splice(get_random_index(array.length), 0, element);
-  }
 });

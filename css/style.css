@@ -104,10 +104,36 @@ html,body{
 	-moz-border-radius:10px 10px;
 	-webkit-border-radius:10px 10px;
 	border-radius:10px 10px;
+}
+.cursor{
 	cursor: url('../img/monstre_curseur.png'), pointer;
 }
 .People{
-	background: url('../img/boat.png') repeat #777780;
+	background: url('../img/background_canvas/People.png') repeat #777780;
+}
+.Culture{
+	background: url('../img/background_canvas/Culture.png') repeat #777780;
+}
+.Technologie{
+	background: url('../img/background_canvas/Technologie.png') repeat #777780;
+}
+.Politique{
+	background: url('../img/background_canvas/Politique.png') repeat #777780;
+}
+.Sport{
+	background: url('../img/background_canvas/Sport.png') repeat #777780;
+}
+.Cinema{
+	background: url('../img/background_canvas/Cinema.png') repeat #777780;
+}
+.International{
+	background: url('../img/background_canvas/International.png') repeat #777780;
+}
+.Sciences{
+	background: url('../img/background_canvas/Science.png') repeat #777780;
+}
+.Economie{
+	background: url('../img/background_canvas/Economie.png') repeat #777780;
 }
 .content{
 	width: 100%;
@@ -128,9 +154,11 @@ html,body{
 }
 .icone{
 	cursor: pointer;
-	margin:10px;
+	padding-top:70%;
 }
 .copyright{
-	bottom: 0px;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
 	color: #777780;
 }
