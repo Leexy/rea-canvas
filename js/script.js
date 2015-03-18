@@ -3,6 +3,7 @@ $(function () {
   var CURSOR_IMAGE_WIDTH = 56;
   var CURSOR_IMAGE_HEIGHT = 64;
   var OBJECTS_GAP = CURSOR_IMAGE_HEIGHT - 20;
+  var collisionSound = document.getElementById('collisionSound');
   var c=document.getElementById("cvs");
   var ctx=c.getContext("2d");
   c.width = document.body.clientWidth-350;//document.body.clientWidth;
@@ -14,6 +15,7 @@ $(function () {
   var imgX = (c.width/2)-65.5; // coord x of starting img
   var imgY = (c.height/2)-66.5;
   var cursorOn = false; // boolean for checking if the game is started
+  var soundOn = true;
   var objects;
   /* coord table for flow */
   var coordSet = [
@@ -206,6 +208,9 @@ $('#cvs').mousemove( function (e) {
       compute_object_width(collidingObjects[0]);
       compute_object_width(collidingObjects[1]);
       draw();
+      if(soundOn){
+        collisionSound.play();
+      }
     }
     return false;   
   }
@@ -229,9 +234,9 @@ $('#cvs').mousemove( function (e) {
     function () { $(this).attr("src","img/rejouer_hover.png"); },
     function () { $(this).attr("src","img/rejouer.png"); }
   );
-  $("#imgSoundOff").hover(
-    function () { $(this).attr("src","img/son_off_hover.png"); },
-    function () { $(this).attr("src","img/son_off.png"); }
+  $("#imgSound").hover(
+    function () { $(this).attr("src","img/son_on_hover.png"); },
+    function () { $(this).attr("src","img/son_on.png"); }
   );
   $("#imgPause").hover(
     function () { $(this).attr("src","img/pause_hover.png"); },
@@ -241,5 +246,23 @@ $('#cvs').mousemove( function (e) {
     function () { $(this).attr("src","img/capture_hover.png"); },
     function () { $(this).attr("src","img/capture.png"); }
   );
+
+  $( "#imgSound" ).click(function() {
+    if(soundOn){
+      $("#imgSound").attr("src","img/son_off.png");
+      $("#imgSound").hover(
+        function () { $(this).attr("src","img/son_off_hover.png"); },
+        function () { $(this).attr("src","img/son_off.png"); }
+      );
+      soundOn = false;
+    }else{
+      $("#imgSound").attr("src","img/son_on.png");
+      $("#imgSound").hover(
+        function () { $(this).attr("src","img/son_on_hover.png"); },
+        function () { $(this).attr("src","img/son_on.png"); }
+      );
+      soundOn = true;
+    } 
+  });
 
 });

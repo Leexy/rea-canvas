@@ -22,12 +22,11 @@ if(!isset($_GET['categorie'])){
       <img class="icone" id="capture" src="img/capture.png"/><br/>
       <a href="index.php"><img class="icone" id="imgHome" src="img/home.png"/></a><br/>
       <a href=""><img class="icone" id="imgRepeat" src="img/rejouer.png"/></a><br/>
-      <img class="icone" id="imgSoundOff" src="img/son_off.png"/><br/>
+      <img class="icone" id="imgSound" src="img/son_on.png"/><br/>
       <span class="copyright">&copy; 2015<br/> Audrey Mothu,<br/> Agathe Grunberg</span>
     </div>
   </div>
-<audio style="display:none" controls="controls">
-  Votre navigateur ne supporte pas lélément <code>audio</code> element.
+<audio id="collisionSound" style="display:none" controls="controls">
   <source src="sound/perso.wav" type="audio/wav">
 </audio>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
