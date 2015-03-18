@@ -78,13 +78,12 @@ $(function () {
     url: 'afficheFlux.php',
     data: {Category:chosenCategory}
   }).done(function( result ) {
-    //change the flow
     ctx.clearRect(0, 0, width, height);
     objects = JSON.parse(result);
     var randomCoord = get_random_index(coordSet.length); 
     objects.forEach(function (object,i) {
-      var randomFont = get_random_index(font.length); 
       $( ".leftDiv" ).addClass(object.category);
+      var randomFont = get_random_index(font.length); 
       object.x1 = coordSet[randomCoord][i].x;
       object.y = coordSet[randomCoord][i].y;
       var isUpperCase = false;
@@ -101,6 +100,7 @@ $(function () {
         fontSize = "1.8em";
         fontWord =['2.5em', '3em', '4em'];
       } 
+      /* on recupere chaque flux mot par mot */
       object.words = object.title.split(' ').map(function(word){
         if (!isUpperCase) {
           isUpperCase = Math.random() < 0.2;
@@ -123,7 +123,7 @@ $(function () {
     ctx.drawImage(img, imgX, imgY);
   });
 
-  //Function that draws the ball 
+  //Function that draws text 
   function draw()
   {
     // clear the canvas
