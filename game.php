@@ -26,7 +26,10 @@ if(!isset($_GET['categorie'])){
       <span class="copyright">&copy; 2015<br/> Audrey Mothu,<br/> Agathe Grunberg</span>
     </div>
   </div>
-
+<audio style="display:none" controls="controls">
+  Votre navigateur ne supporte pas lélément <code>audio</code> element.
+  <source src="sound/perso.wav" type="audio/wav">
+</audio>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
 window.chosenCategory = <?php echo json_encode($_GET['categorie']) ?>;

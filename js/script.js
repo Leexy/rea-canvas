@@ -5,15 +5,15 @@ $(function () {
   var OBJECTS_GAP = CURSOR_IMAGE_HEIGHT - 20;
   var c=document.getElementById("cvs");
   var ctx=c.getContext("2d");
-  c.width = document.body.clientWidth-350;//1024;//document.body.clientWidth; //document.width is obsolete
-  c.height = 700;//document.body.clientHeight; //document.height is obsolete
+  c.width = document.body.clientWidth-350;//document.body.clientWidth;
+  c.height = 700;//document.body.clientHeight;
   var width = $('#cvs').width(); /// width of canvas 
   var height = $('#cvs').height(); // height of canvas
   var img = new Image();   // new object Image
   img.src = 'img/start.png'; // pass to source
-  var imgX = (c.width/2)-65.5;
+  var imgX = (c.width/2)-65.5; // coord x of starting img
   var imgY = (c.height/2)-66.5;
-  var cursorOn = false;
+  var cursorOn = false; // boolean for checking if the game is started
   var objects;
   /* coord table for flow */
   var coordSet = [
@@ -89,7 +89,7 @@ $(function () {
       var isUpperCase = false;
       var randomColor = get_random_index(fontColor.length);// random color for 1 flow
       if(i<=Math.round(objects.length/2)-1){
-        fontSize = "0.5em";
+        fontSize = "0.6em";
         fontWord =['1em', '2em', '4em'];
        }
       else if(i<=Math.round(objects.length-3) && i >=Math.round(objects.length/2)){
@@ -196,7 +196,7 @@ $('#cvs').mousemove( function (e) {
   var targetOffset = $(e.target).offset();
   var x = e.offsetX === undefined ? e.clientX-targetOffset.left : e.offsetX;
   var y = e.offsetY === undefined ? e.clientY-targetOffset.top : e.offsetY;
-  if(cursorOn){
+  if(cursorOn){ // if the game is not started no collision is possible
     var collidingObjects = get_colliding_objects({ x: x, y: y });
     if (collidingObjects.length >= 2) {
       var firstWord = extract_random_word(collidingObjects[0].words);
@@ -209,7 +209,7 @@ $('#cvs').mousemove( function (e) {
     }
     return false;   
   }
-  else{
+  else{ // if the mouse is on the start img the cursor change and the image disappears
     if(x <= imgX+100 && x >= imgX+60){
       if(y<= imgY+101&& y >= imgY){ 
         cursorOn=true;
