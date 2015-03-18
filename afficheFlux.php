@@ -1,6 +1,6 @@
 <?php
 
-/* tableau de flux */
+/* flow table */
 $tabFlux = array(
 		"Politique" => array("url" => "http://www.lemonde.fr/politique/rss_full.xml", "categorie" => "Politique"),
 
@@ -22,7 +22,7 @@ $tabFlux = array(
 );
 
 
-/* affichage des flux de la categorie choisie */
+/* show flow of chosen category */
 $arrayItems = array();
 if(isset($_POST['Category'])){
 	$cat = $_POST['Category'];
@@ -30,7 +30,7 @@ if(isset($_POST['Category'])){
 		if($rss)
 		{
 			$items = $rss->channel->item;
-			foreach($items->xpath('//item[position() <= 16]') as $item) // on limite le nombre de flux a 4 par categorie
+			foreach($items->xpath('//item[position() <= 16]') as $item) // limit the number of flow/category
 			{
 				$published_on = $item->pubDate;
 				$pubDate = strftime("%d-%m-%Y %H:%M", strtotime($published_on));
@@ -40,30 +40,9 @@ if(isset($_POST['Category'])){
  					'category' => (string) $cat,
 				);
 			}
-			//unset($tabFlux[$cat]); // supprime le flux selectionne du tableau pour qu'il ne reapparaissent pas dans les flux random !
+			//unset($tabFlux[$cat]); // delete the flow
 		}
 }
-
-/* affichage de flux de categories random 
-shuffle($tabFlux);
-foreach(array_slice($tabFlux, 0, 3, true) as $category => $flux) {
-	$rss = simplexml_load_file($flux['url']);
-	if($rss)
-	{
-		$items = $rss->channel->item;
-		foreach($items->xpath('//item[position() <= 2]') as $item) // on limite le nombre de flux a 4 par categorie
-		{
-			$published_on = $item->pubDate;
-			$pubDate = strftime("%d-%m-%Y %H:%M", strtotime($published_on));
-			$arrayItems[] = array(
-				'title' => (string) $item->title,
-				'pubdate' => (string) $pubDate,
-				'category' => (string) $flux['categorie'],
- 				'font' => (string) $flux['font']
-			);
-		}
-	}
-}*/
 
 echo json_encode($arrayItems);
 

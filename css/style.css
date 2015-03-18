@@ -3,7 +3,7 @@ html,body{
   	padding: 0;
   	height: 100%;
 }
-/*css page d'accueil */
+/* css index page */
 .table{
 	display: table;
 	margin: auto;
@@ -33,7 +33,7 @@ html,body{
     height:214px ;
 }
 
-/* choix des categories */
+/* category choice */
 .titre{
 	display: block;
 	margin: auto;
@@ -100,7 +100,7 @@ html,body{
 	border:1px;
 	padding:5px;
 	margin-left: 103px;
-	/*arrondir les coins en haut à gauche et en bas à droite*/
+	/* round corner */
 	-moz-border-radius:10px 10px;
 	-webkit-border-radius:10px 10px;
 	border-radius:10px 10px;

@@ -9,13 +9,13 @@ $(function () {
   c.height = 700;//document.body.clientHeight; //document.height is obsolete
   var width = $('#cvs').width(); /// width of canvas 
   var height = $('#cvs').height(); // height of canvas
-  var img = new Image();   // Crée un nouvel objet Image
-  img.src = 'img/start.png'; // Définit le chemin vers sa source
+  var img = new Image();   // new object Image
+  img.src = 'img/start.png'; // pass to source
   var imgX = (c.width/2)-65.5;
   var imgY = (c.height/2)-66.5;
   var cursorOn = false;
   var objects;
-  /* tableau de coordonnee pour le positionnement des flux */
+  /* coord table for flow */
   var coordSet = [
     [ 
       { x: 500 },
@@ -62,17 +62,17 @@ $(function () {
     });
   });
 
-  /* tableau de type de police */
+  /* table font type */
   var fontType = ['Bold','Italic', 'normal'];
-  /* tableau taille de police*/
+  /* table font size */
   var fontSize = "";//['0.8em', '1em', '1.2em', '1.4em', '1.5em', '1.8em'];
   var fontWord =[];
-  /* tableau de police */
+  /* font table */
   var font = ['Times', 'Palatino', 'Gill Sans', 'Andale Mono', 'Courrier', 'Helvetica Narrow' ,'Impact', 'Arial', 'Lucida console'];
-  /* tableau de couleur */
+  /* table font color */
   var fontColor = ['#469991', '#78ccc4', '#3f6e8a', '#5ea4cc', '#384c78', '#bf5458' ,'#ff7075'];
 
-  /* requete ajax pour recuperer les flux*/
+  /* ajax request to get flow */
   $.ajax({
     type: 'post',
     url: 'afficheFlux.php',
@@ -83,11 +83,11 @@ $(function () {
     var randomCoord = get_random_index(coordSet.length); 
     objects.forEach(function (object,i) {
       $( ".leftDiv" ).addClass(object.category);
-      var randomFont = get_random_index(font.length); 
-      object.x1 = coordSet[randomCoord][i].x;
+      var randomFont = get_random_index(font.length); // random font for 1 flow
+      object.x1 = coordSet[randomCoord][i].x; //random coord
       object.y = coordSet[randomCoord][i].y;
       var isUpperCase = false;
-      var randomColor = get_random_index(fontColor.length);
+      var randomColor = get_random_index(fontColor.length);// random color for 1 flow
       if(i<=Math.round(objects.length/2)-1){
         fontSize = "0.5em";
         fontWord =['1em', '2em', '4em'];
@@ -100,7 +100,7 @@ $(function () {
         fontSize = "1.8em";
         fontWord =['2.5em', '3em', '4em'];
       } 
-      /* on recupere chaque flux mot par mot */
+      /* get the flow word by word */
       object.words = object.title.split(' ').map(function(word){
         if (!isUpperCase) {
           isUpperCase = Math.random() < 0.2;
@@ -220,7 +220,7 @@ $('#cvs').mousemove( function (e) {
   }
 });
 
-  /* hover des icones de jeu*/
+  /* hover games icon */
   $("#imgHome").hover(
   function () {
       $(this).attr("src","img/home_hover.png");
