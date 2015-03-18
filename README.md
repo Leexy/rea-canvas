@@ -1,2 +1,2 @@
 # rea-canvas
-Mélange de flux
+MÃ©lange de flux
