@@ -62,14 +62,14 @@ $(function () {
     });
   });
 
-  /* table font type */
+  /* font type table */
   var fontType = ['Bold','Italic', 'normal'];
-  /* table font size */
+  /* font size table */
   var fontSize = "";//['0.8em', '1em', '1.2em', '1.4em', '1.5em', '1.8em'];
   var fontWord =[];
   /* font table */
   var font = ['Times', 'Palatino', 'Gill Sans', 'Andale Mono', 'Courrier', 'Helvetica Narrow' ,'Impact', 'Arial', 'Lucida console'];
-  /* table font color */
+  /* font color table */
   var fontColor = ['#469991', '#78ccc4', '#3f6e8a', '#5ea4cc', '#384c78', '#bf5458' ,'#ff7075'];
 
   /* ajax request to get flow */
@@ -222,39 +222,24 @@ $('#cvs').mousemove( function (e) {
 
   /* hover games icon */
   $("#imgHome").hover(
-  function () {
-      $(this).attr("src","img/home_hover.png");
-  },
-  function () {
-      $(this).attr("src","img/home.png");
-  });
+    function () { $(this).attr("src","img/home_hover.png"); },
+    function () { $(this).attr("src","img/home.png"); }
+  );
   $("#imgRepeat").hover(
-  function () {
-      $(this).attr("src","img/rejouer_hover.png");
-  },
-  function () {
-      $(this).attr("src","img/rejouer.png");
-  });
+    function () { $(this).attr("src","img/rejouer_hover.png"); },
+    function () { $(this).attr("src","img/rejouer.png"); }
+  );
   $("#imgSoundOff").hover(
-  function () {
-      $(this).attr("src","img/son_off_hover.png");
-  },
-  function () {
-      $(this).attr("src","img/son_off.png");
-  });
+    function () { $(this).attr("src","img/son_off_hover.png"); },
+    function () { $(this).attr("src","img/son_off.png"); }
+  );
   $("#imgPause").hover(
-  function () {
-      $(this).attr("src","img/pause_hover.png");
-  },
-  function () {
-      $(this).attr("src","img/pause.png");
-  });
+    function () { $(this).attr("src","img/pause_hover.png"); },
+    function () { $(this).attr("src","img/pause.png"); }
+  );
   $("#capture").hover(
-  function () {
-      $(this).attr("src","img/capture_hover.png");
-  },
-  function () {
-      $(this).attr("src","img/capture.png");
-  });
+    function () { $(this).attr("src","img/capture_hover.png"); },
+    function () { $(this).attr("src","img/capture.png"); }
+  );
 
 });
