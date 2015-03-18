@@ -30,7 +30,7 @@ if(isset($_POST['Category'])){
 		if($rss)
 		{
 			$items = $rss->channel->item;
-			foreach($items->xpath('//item[position() <= 10]') as $item) // on limite le nombre de flux a 4 par categorie
+			foreach($items->xpath('//item[position() <= 16]') as $item) // on limite le nombre de flux a 4 par categorie
 			{
 				$published_on = $item->pubDate;
 				$pubDate = strftime("%d-%m-%Y %H:%M", strtotime($published_on));

@@ -2,7 +2,7 @@ $(function () {
   var SPACE_SIZE = 5;
   var CURSOR_IMAGE_WIDTH = 56;
   var CURSOR_IMAGE_HEIGHT = 64;
-  var OBJECTS_GAP = CURSOR_IMAGE_HEIGHT - 10;
+  var OBJECTS_GAP = CURSOR_IMAGE_HEIGHT - 20;
   var c=document.getElementById("cvs");
   var ctx=c.getContext("2d");
   c.width = document.body.clientWidth-350;//1024;//document.body.clientWidth; //document.width is obsolete
@@ -18,32 +18,44 @@ $(function () {
   /* tableau de coordonnee pour le positionnement des flux */
   var coordSet = [
     [ 
+      { x: 500 },
+      { x: 500 },
+      { x: 50 },
+      { x: 50 },
+      { x: 600 },
+      { x: 600 },
+      { x: 150 },
+      { x: 150 },
+      { x: 300 },
+      { x: 300 },
+      { x: 360 },
+      { x: 360 },
+      { x: 420 },
+      { x: 420 },
       { x: 10 },
       { x: 10 },
-      { x: 360 },
-      { x: 360 },
-      { x: 360 },
-      { x: 360 },
-      { x: 720 },
-      { x: 720 },
-      { x: 720 },
-      { x: 720 },
-    ],
+    ]/*,
     [
       { x: 10 },
       { x: 10 },
+      { x: 10 },
+      { x: 50 },
+      { x: 50 },
+      { x: 100 },
+      { x: 100 },
+      { x: 120 },
       { x: 380 },
       { x: 380 },
       { x: 420 },
-      { x: 420 },
+      { x: 20 },
       { x: 620 },
       { x: 620 },
       { x: 720 },
-      { x: 720 },
-    ]
+      { x: 20 },
+    ]*/
   ];
   coordSet.forEach(function (coords) {
-    var y = 80;
+    var y = 20;
     coords.forEach(function (position) {
       position.y = y;
       y += OBJECTS_GAP;
@@ -53,7 +65,8 @@ $(function () {
   /* tableau de type de police */
   var fontType = ['Bold','Italic', 'normal'];
   /* tableau taille de police*/
-  var fontSize = ['0.8em', '1em', '1.2em', '1.4em', '1.5em', '1.8em'];
+  var fontSize = "";//['0.8em', '1em', '1.2em', '1.4em', '1.5em', '1.8em'];
+  var fontWord =[];
   /* tableau de police */
   var font = ['Times', 'Palatino', 'Gill Sans', 'Andale Mono', 'Courrier', 'Helvetica Narrow' ,'Impact', 'Arial', 'Lucida console'];
   /* tableau de couleur */
@@ -68,23 +81,35 @@ $(function () {
     //change the flow
     ctx.clearRect(0, 0, width, height);
     objects = JSON.parse(result);
-    var randomCoord = get_random_index(coordSet.length);
+    var randomCoord = get_random_index(coordSet.length); 
     objects.forEach(function (object,i) {
+      var randomFont = get_random_index(font.length); 
       $( ".leftDiv" ).addClass(object.category);
       object.x1 = coordSet[randomCoord][i].x;
       object.y = coordSet[randomCoord][i].y;
       var isUpperCase = false;
       var randomColor = get_random_index(fontColor.length);
+      if(i<=Math.round(objects.length/2)-1){
+        fontSize = "0.5em";
+        fontWord =['1em', '2em', '4em'];
+       }
+      else if(i<=Math.round(objects.length-3) && i >=Math.round(objects.length/2)){
+        fontSize = "1.2em";
+        fontWord =['2.5em', '3em', '4em'];
+      }
+      else{
+        fontSize = "1.8em";
+        fontWord =['2.5em', '3em', '4em'];
+      } 
       object.words = object.title.split(' ').map(function(word){
         if (!isUpperCase) {
           isUpperCase = Math.random() < 0.2;
         }
         var randomFontType = get_random_index(fontType.length);
-        var randomFontSize = get_random_index(fontSize.length);
-        var randomFont = get_random_index(font.length);     
+        var randomFontWord = get_random_index(fontWord.length);
         word = {
           text: isUpperCase ? word.toUpperCase() : word,
-          font: fontType[randomFontType]+" "+fontSize[randomFontSize]+" "+font[randomFont],
+          font: fontType[randomFontType]+" "+fontSize+" "+font[randomFont],
           fontColor: fontColor[randomColor],
         };
         ctx.font = word.font;
