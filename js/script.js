@@ -57,7 +57,7 @@ $(function () {
     ]*/
   ];
   coordSet.forEach(function (coords) {
-    var y = 20;
+    var y = 30;
     coords.forEach(function (position) {
       position.y = y;
       y += OBJECTS_GAP;
@@ -88,31 +88,50 @@ $(function () {
       var randomFont = get_random_index(font.length); // random font for 1 flow
       object.x1 = coordSet[randomCoord][i].x; //random coord
       object.y = coordSet[randomCoord][i].y;
-      var isUpperCase = false;
-      var randomColor = get_random_index(fontColor.length);// random color for 1 flow
+      var objectFontType = fontType[get_random_index(fontType.length)];
+      var objectFontName = font[get_random_index(font.length)];
+      var randomColor = fontColor[get_random_index(fontColor.length)];// random color for 1 flow
       if(i<=Math.round(objects.length/2)-1){
         fontSize = "0.6em";
-        fontWord =['1em', '2em', '4em'];
+        fontWord =['1em', '1.5em', '2em'];
        }
       else if(i<=Math.round(objects.length-3) && i >=Math.round(objects.length/2)){
         fontSize = "1.2em";
-        fontWord =['2.5em', '3em', '4em'];
+        fontWord =['1.5em', '2.5em', '3em'];
       }
       else{
-        fontSize = "1.8em";
-        fontWord =['2.5em', '3em', '4em'];
+        fontSize = "1.5em";
+        fontWord =['2em', '2.5em', '3em'];
       } 
       /* get the flow word by word */
-      object.words = object.title.split(' ').map(function(word){
-        if (!isUpperCase) {
-          isUpperCase = Math.random() < 0.2;
+      var words = object.title.split(' ');
+      var groups = [];
+      var specialGroupIndex = 1;
+      var randomIndex;
+      if (words.length <= 3) {
+        groups.push(object.title);
+      } else {
+        randomIndex = get_random_index(words.length - 2);
+        if (randomIndex > 0) {
+          groups.push(words.slice(0, randomIndex).join(' '));
         }
-        var randomFontType = get_random_index(fontType.length);
-        var randomFontWord = get_random_index(fontWord.length);
+        groups.push(words.slice(randomIndex, randomIndex + 3).join(' '));
+        if (randomIndex < words.length - 3) {
+          groups.push(words.slice(randomIndex + 3).join(' '));
+          if (randomIndex === 0) {
+            specialGroupIndex = 0;
+          }
+        }
+      }
+      object.words = groups.map(function(word, index){
+        var isSpecialGroup = index === specialGroupIndex;
+        var wordFontSize = isSpecialGroup ? fontWord[get_random_index(fontWord.length)] : fontSize;
+        var wordFontType = isSpecialGroup ? fontType[get_random_index(fontType.length)] : objectFontType;
+        var wordFontName = isSpecialGroup ? font[get_random_index(font.length)] : objectFontName;
         word = {
-          text: isUpperCase ? word.toUpperCase() : word,
-          font: fontType[randomFontType]+" "+fontSize+" "+font[randomFont],
-          fontColor: fontColor[randomColor],
+          text: isSpecialGroup ? word.toUpperCase() : word,
+          font: objectFontType + " " + wordFontSize + " " + wordFontName,
+          fontColor: randomColor,
         };
         ctx.font = word.font;
         word.width = ctx.measureText(word.text).width;
