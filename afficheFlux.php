@@ -4,9 +4,9 @@
 $tabFlux = array(
 		"Politique" => array("url" => "http://www.lemonde.fr/politique/rss_full.xml", "categorie" => "Politique"),
 
-	    "Economie" => array("url" => "http://syndication.lesechos.fr/rss/rss_politique_societe.xml", "categorie" => "Economie"),
+	    "Economie" => array("url" => "http://www.france24.com/fr/economie/rss", "categorie" => "Economie"),
 
-	    "Technologie" => array("url" => "http://www.actinnovation.com/feed/", "categorie" =>  "Technologie"),
+	    "Technologie" => array("url" => "http://feeds2.feedburner.com/LeJournalduGeek", "categorie" =>  "Technologie"),
 
 	    "Cinema" => array("url" => "http://www.premiere.fr/var/premiere/storage/rss/cinema_actu.xml", "categorie" => "Cinema"),
 
