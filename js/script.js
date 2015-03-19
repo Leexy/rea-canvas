@@ -230,11 +230,7 @@ $("#capture").on("click", function(){
 // Disable rightclick so that we can use the right button as input on the canvas
 $('#cvs').bind("contextmenu", function(e) { return false });
 
-// called every time the mouse is moved
-$('#cvs').mousemove( function (e) {
-  var targetOffset = $(e.target).offset();
-  var x = e.offsetX === undefined ? e.clientX-targetOffset.left : e.offsetX;
-  var y = e.offsetY === undefined ? e.clientY-targetOffset.top : e.offsetY;
+function onUserAction(x,y){
   if(cursorOn){ // if the game is not started no collision is possible
     var collidingObjects = get_colliding_objects({ x: x, y: y });
     if (collidingObjects.length >= 2) {
@@ -260,8 +256,31 @@ $('#cvs').mousemove( function (e) {
       }
     }
   }
-});
+}
+// called every time the mouse is moved
+$('#cvs').mousemove( function (e) {
+  var targetOffset = $(e.target).offset();
+  var x = e.offsetX === undefined ? e.clientX-targetOffset.left : e.offsetX;
+  var y = e.offsetY === undefined ? e.clientY-targetOffset.top : e.offsetY;
+  onUserAction(x,y);
 
+});
+// add on touchmove on tablette
+$(window).bind('touchmove', function(jQueryEvent) {
+  jQueryEvent.preventDefault();
+  var event = window.event;
+  var x= event.touches[0].pageX; 
+  var y= event.touches[0].pageY;
+  onUserAction(x,y);
+});
+$(window).bind('touchstart', function(jQueryEvent) {
+  jQueryEvent.preventDefault();
+  var event = window.event;
+  var targetOffset = $(event.target).offset();
+  var x= event.touches[0].pageX-targetOffset.left; 
+  var y= event.touches[0].pageY-targetOffset.top;
+  onUserAction(x,y);
+});
   /* hover games icon */
   $("#imgHome").hover(
     function () { $(this).attr("src","img/home_hover.png"); },
