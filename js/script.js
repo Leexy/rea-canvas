@@ -97,11 +97,11 @@ $(function () {
        }
       else if(i<=Math.round(objects.length-3) && i >=Math.round(objects.length/2)){
         fontSize = "1.2em";
-        fontWord =['1.5em', '2.5em', '3em'];
+        fontWord =['1.5em', '1.8em', '2.5em'];
       }
       else{
         fontSize = "1.5em";
-        fontWord =['2em', '2.5em', '3em'];
+        fontWord =['1.8em', '2em', '2.5em'];
       } 
       /* get the flow word by word */
       var words = object.title.split(' ');
