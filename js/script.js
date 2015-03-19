@@ -2,7 +2,7 @@ $(function () {
   var SPACE_SIZE = 5;
   var CURSOR_IMAGE_WIDTH = 56;
   var CURSOR_IMAGE_HEIGHT = 64;
-  var OBJECTS_GAP = CURSOR_IMAGE_HEIGHT - 20;
+  //var OBJECTS_GAP = CURSOR_IMAGE_HEIGHT - 20;
   var collisionSound = document.getElementById('collisionSound');
   var c=document.getElementById("cvs");
   var ctx=c.getContext("2d");
@@ -65,7 +65,7 @@ $(function () {
       { x: 150, y: 320 },
       { x: 150, y: 360 },
       { x: 300, y: 240 },
-      { x: 300, y: 270 },
+      { x: 300, y: 280 },
       { x: 360, y: 420 },
       { x: 360, y: 480 },
       { x: 420, y: 620 },
@@ -86,7 +86,7 @@ $(function () {
   /* font type table */
   var fontType = ['Bold','Italic', 'normal'];
   /* font size table */
-  var fontSize = "";//['0.8em', '1em', '1.2em', '1.4em', '1.5em', '1.8em'];
+  var fontSize = "";
   var fontWord =[];
   /* font table */
   var font = ['Times', 'Palatino', 'Gill Sans', 'Andale Mono', 'Courrier', 'Helvetica Narrow' ,'Impact', 'Arial', 'Lucida console'];
@@ -124,31 +124,19 @@ $(function () {
       } 
       /* get the flow word by word */
       var words = object.title.split(' ');
-      var groups = [];
-      var specialGroupIndex = 1;
       var randomIndex;
-      if (words.length <= 3) {
-        groups.push(object.title);
-      } else {
+      var specialGroupIndexes = [];
+      if (words.length > 3) {
         randomIndex = get_random_index(words.length - 2);
-        if (randomIndex > 0) {
-          groups.push(words.slice(0, randomIndex).join(' '));
-        }
-        groups.push(words.slice(randomIndex, randomIndex + 3).join(' '));
-        if (randomIndex < words.length - 3) {
-          groups.push(words.slice(randomIndex + 3).join(' '));
-          if (randomIndex === 0) {
-            specialGroupIndex = 0;
-          }
-        }
+        specialGroupIndexes.push(randomIndex, randomIndex+1, randomIndex+2);
       }
-      object.words = groups.map(function(word, index){
-        var isSpecialGroup = index === specialGroupIndex;
-        var wordFontSize = isSpecialGroup ? fontWord[get_random_index(fontWord.length)] : fontSize;
-        var wordFontType = isSpecialGroup ? fontType[get_random_index(fontType.length)] : objectFontType;
-        var wordFontName = isSpecialGroup ? font[get_random_index(font.length)] : objectFontName;
+      object.words = words.map(function(word, index){
+        var isInSpecialGroup = specialGroupIndexes.indexOf(index) !== -1;
+        var wordFontSize = isInSpecialGroup ? fontWord[get_random_index(fontWord.length)] : fontSize;
+        var wordFontType = isInSpecialGroup ? fontType[get_random_index(fontType.length)] : objectFontType;
+        var wordFontName = isInSpecialGroup ? font[get_random_index(font.length)] : objectFontName;
         word = {
-          text: isSpecialGroup ? word.toUpperCase() : word,
+          text: isInSpecialGroup ? word.toUpperCase() : word,
           font: objectFontType + " " + wordFontSize + " " + wordFontName,
           fontColor: randomColor,
         };
@@ -210,7 +198,10 @@ function extract_random_word(words) {
 
 function compute_object_width(object) {
   object.width = object.words.reduce(function (sum, word) { return sum + word.width; }, 0) + SPACE_SIZE * object.words.length;
-  if (object.x1 + object.width >= c.width) {
+  if(object.x1 < 0){
+    object.x1 = 0;
+  }
+  else if (object.x1 + object.width >= c.width) {
     object.x1 = c.width - object.width;
   }
   object.x2 = object.x1 + object.width;
