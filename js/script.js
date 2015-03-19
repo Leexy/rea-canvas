@@ -207,7 +207,17 @@ function random_insert(element, array) {
 
 $("#capture").on("click", function(){
   //$("#captureImg").attr("src",c.toDataURL());
-  window.open(c.toDataURL(),"Capture");
+  //window.open(c.toDataURL(),"Capture");
+  var link = document.createElement('a');
+  if (typeof link.download != "undefined") {
+    link.href = c.toDataURL("image/png").replace("image/png", "image/octet-stream");
+    link.download = "newsBreak.png";
+    link.click();
+  }else{
+    window.open(c.toDataURL(),"Capture");
+  }
+  /*var link = document.createElement('a');
+    */
 });
 // Disable rightclick so that we can use the right button as input on the canvas
 $('#cvs').bind("contextmenu", function(e) { return false });
@@ -265,7 +275,7 @@ $('#cvs').mousemove( function (e) {
     function () { $(this).attr("src","img/capture_hover.png"); },
     function () { $(this).attr("src","img/capture.png"); }
   );
-
+  /* check & change sound status */
   $( "#imgSound" ).click(function() {
     if(soundOn){
       $("#imgSound").attr("src","img/son_off.png");
