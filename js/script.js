@@ -206,18 +206,16 @@ function random_insert(element, array) {
 }
 
 $("#capture").on("click", function(){
-  //$("#captureImg").attr("src",c.toDataURL());
-  //window.open(c.toDataURL(),"Capture");
   var link = document.createElement('a');
   if (typeof link.download != "undefined") {
     link.href = c.toDataURL("image/png").replace("image/png", "image/octet-stream");
     link.download = "newsBreak.png";
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   }else{
     window.open(c.toDataURL(),"Capture");
   }
-  /*var link = document.createElement('a');
-    */
 });
 // Disable rightclick so that we can use the right button as input on the canvas
 $('#cvs').bind("contextmenu", function(e) { return false });
