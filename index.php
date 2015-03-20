@@ -7,6 +7,15 @@
 </head>
 
 <body class="index-page">
+
+<a href="#" id="showCredit" class="poplight">Credits</a>
+<div id="popup_credit" class="popup_block">
+  <a href="#" id="mail"><img id="imgMail" src="img/credit/mail_icon.png"/></a>
+  <a href="#" id="twitter"><img id="imgTweet" src="img/credit/tweet_icon.png"/></a>
+  <a href="#" id="facebook"><img id="imgFB" src="img/credit/fb_icon.png"/></a>
+  <a href="#" class="close" id="home"><img id="imgHome" src="img/credit/credit_btn_home.png"/></a>
+</div>
+
 <img class="titre" src="img/titre.png"/>
 <img class="titre" src="img/soustitre.png"/>
 <div class="table">
@@ -34,6 +43,7 @@ $("div.categorie").click(function() {
   document.location = "game.php?categorie="+encodeURIComponent(cat);
   });
 </script>
+<script type="text/javascript" src="js/popUpScript.js"></script>
 
 </body>
 

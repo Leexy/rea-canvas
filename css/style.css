@@ -3,7 +3,7 @@ html,body{
   	padding: 0;
   	height: 100%;
 }
-/* css index page */
+/********************  css index page ********************/
 .table{
 	display: table;
 	margin: auto;
@@ -94,7 +94,66 @@ html,body{
 	background: url('../img/cat/economie_hover.png');
 }
 
-/* css page game.php*/
+/* credits pop up */
+#showCredit {
+	position: fixed;
+	right : 5px;
+}
+#fade { /* dark opacity */
+	display: none;
+	background: #000;
+	position: fixed; left: 0; top: 0;
+	width: 100%; height: 100%;
+	opacity: .80;
+	z-index: 9999;
+}
+.popup_block{
+	display: none;
+	background:url('../img/credit/credits_back.png') no-repeat;
+	float: left;
+	font-size: 1.2em;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+}
+/*-- position fixed for IE6--*/
+*html #fade {
+	position: absolute;
+}
+*html .popup_block {
+	position: absolute;
+}
+/* pop up button */
+#mail{
+	height: 44px;
+	width: 44px;
+	margin-top: 430px;
+  	position: fixed;
+  	margin-left: 50px;
+}
+#twitter{
+	height: 44px;
+	width: 44px;
+	position: fixed;
+	margin-top: 310px;
+	margin-left: 430px;	
+}
+#facebook{
+	height: 44px;
+	width: 44px;
+	position: fixed;
+	margin-top: 170px;
+	margin-left: 70px;
+}
+#home{
+	height: 63px;
+	width: 61px;
+	position: fixed;
+  	margin-top: 645px;
+  	margin-left: 240px;
+}
+
+/******************** css page game.php ********************/
 #cvs{
 	background-color:white;	
 	border:1px;
