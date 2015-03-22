@@ -4,8 +4,8 @@ $(function () {
 		$('#popup_credit').fadeIn().css({ 'width': 544, 'height': 744});
 		
 		//get the margin to center the pop up
-		var popMargTop = ($('#popup_credit').height() +80 )/2;
-		var popMargLeft = ($('#popup_credit').width() +80 )/2;
+		var popMargTop = ($('#popup_credit').height() )/2;
+		var popMargLeft = ($('#popup_credit').width() )/2;
 		
 		//Apply Margin to Popup
 		$('#popup_credit').css({ 
@@ -39,8 +39,8 @@ $(function () {
 	    function () { $(this).attr("src","img/credit/fb_icon_hover.png"); },
 	    function () { $(this).attr("src","img/credit/fb_icon.png"); }
   	);
-  	$("#imgHome").hover(
+  	$("#imgBackHome").hover(
 	    function () { $(this).attr("src","img/credit/credit_btn_home_hover.png"); },
 	    function () { $(this).attr("src","img/credit/credit_btn_home.png"); }
-  	);  	
+  	);	
 });
