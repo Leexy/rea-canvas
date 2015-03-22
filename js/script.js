@@ -17,6 +17,7 @@ $(function () {
   var cursorOn = false; // boolean for checking if the game is started
   var soundOn = true;
   var objects;
+  var flow;
   /* coord table for flow */
   var coordSet = [
     [ 
@@ -99,6 +100,11 @@ $(function () {
     url: 'afficheFlux.php',
     data: {Category:chosenCategory}
   }).done(function( result ) {
+    flow = result;
+    init(flow);
+  });
+
+  function init(result){
     ctx.clearRect(0, 0, width, height);
     objects = JSON.parse(result);
     var randomCoord = get_random_index(coordSet.length); 
@@ -149,13 +155,19 @@ $(function () {
     });
     draw();
     ctx.drawImage(img, imgX, imgY);
-  });
-
+    /* put opacity on canvas before the game start */
+    ctx.globalAlpha=0.2;
+    ctx.fillStyle="black"; 
+    ctx.fillRect(0,0,width,height);
+    /* delete opacity after the game started */
+    ctx.globalAlpha=1; 
+  }
   //Function that draws text 
   function draw()
   {
     // clear the canvas
-    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle="white";
+    ctx.fillRect(0, 0, width, height);
     for (var i=0; i<objects.length; i++)
     {
       //ctx.save();      
@@ -302,6 +314,10 @@ $(window).bind('touchstart', function(jQueryEvent) {
     function () { $(this).attr("src","img/capture_hover.png"); },
     function () { $(this).attr("src","img/capture.png"); }
   );
+  $("#imgInstruction").hover(
+    function () { $(this).attr("src","img/instruction_hover.png"); },
+    function () { $(this).attr("src","img/instruction.png"); }
+  );
   /* check & change sound status */
   $( "#imgSound" ).click(function() {
     if(soundOn){
@@ -320,5 +336,46 @@ $(window).bind('touchstart', function(jQueryEvent) {
       soundOn = true;
     } 
   });
+  /* pop up instruction */
+  function showPopUp() {
+    //show the pop up
+    $('#popup_instruction').fadeIn().css({ 'width': 665, 'height': 744});
+    
+    //get the margin to center the pop up
+    var popMargTop = ($('#popup_instruction').height() )/2;
+    var popMargLeft = ($('#popup_instruction').width() )/2;
+    
+    //Apply Margin to Popup
+    $('#popup_instruction').css({ 
+      'margin-top' : -popMargTop,
+      'margin-left' : -popMargLeft
+    });
+    
+    //background opacity
+    $('#game').append('<div id="fade"></div>');
+    $('#fade').css({'filter' : 'alpha(opacity=80)'}).fadeIn();
+    
+    return false;
+  }
+  $('a.popInstruction').on('click',showPopUp);  
+  
+  //Close Popups and Fade Layer
+  $('body').on('click', 'a.close, #fade', function() {
+    $('#fade , .popup_block').fadeOut(function() {});
+    return false;
+  });
+  if(!sessionStorage.hasSeenInstructions){
+    showPopUp();
+    sessionStorage.hasSeenInstructions = true;
+  }
 
+  $("#imgPlay").hover(
+    function () { $(this).attr("src","img/instruction/instructions_btn_play_hover.png"); },
+    function () { $(this).attr("src","img/instruction/instructions_btn_play.png"); }
+  );
+  $("#imgRepeat").on('click', function(){
+    cursorOn=false;
+    $( "#cvs" ).removeClass("cursor");
+    init(flow);
+  });
 });
