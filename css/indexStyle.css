@@ -213,7 +213,7 @@ video#bgvid {
 	position: fixed; right: 0; bottom: 0;
 	min-width: 100%; min-height: 100%;
 	width: auto; height: auto; z-index: -100;
-	background: url(polina.jpg) no-repeat;
+	background: url('../img/home/newsbreak.jpg') no-repeat;
 	background-size: cover;
 	z-index: 1;
 }
@@ -226,7 +226,7 @@ video#bgvid {
 }
 .row
 {
-
+	display: table-row;
 }
 .categorie
 {
@@ -235,7 +235,7 @@ video#bgvid {
 	color: #777780;
 	text-align: center;
 	margin-left: 70px;
-	min-width: 100px;
+	min-width: 120px;
     cursor: pointer;
     margin-bottom: 20px;
 	
