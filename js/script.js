@@ -303,6 +303,7 @@ $('#cvs').mousemove( function (e) {
 });
 //called when mouse down
 $( "#cvs" ).mousedown( function (e) {
+  var targetOffset = $(e.target).offset();
   var x = e.offsetX === undefined ? e.clientX-targetOffset.left : e.offsetX;
   var y = e.offsetY === undefined ? e.clientY-targetOffset.top : e.offsetY;
   onMouseClick(x,y);
