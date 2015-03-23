@@ -16,7 +16,7 @@ $(function () {
   var imgY = (c.height/2)-66.5;
   var cursorOn = false; // boolean for checking if the game is started
   var soundOn = true;
-  var draggedObject = null;
+  var draggingBag = null;
   var objects;
   var flow;
   /* coord table for flow */
@@ -260,10 +260,10 @@ function onUserAction(x,y){
       }
     }
     
-    if(draggedObject){
-      draggedObject.x1 = x;
-      draggedObject.y = y;
-      compute_object_width(draggedObject);
+    if(draggingBag){
+      draggingBag.draggedObject.x1 = x + draggingBag.delta.x;
+      draggingBag.draggedObject.y = y + draggingBag.delta.y;
+      compute_object_width(draggingBag.draggedObject);
       needToDraw = true;
     }
   }
@@ -282,8 +282,16 @@ function onUserAction(x,y){
 }
 
 function onMouseClick(x,y){
-  var clickedObjects = get_colliding_objects({ x: x, y: y });
-  draggedObject = clickedObjects[0];
+  var clickedObject = get_colliding_objects({ x: x, y: y })[0];
+  if (clickedObject) {
+    draggingBag = {
+      draggedObject: clickedObject,
+      delta: {
+        x : clickedObject.x1 - x,
+        y : clickedObject.y - y,
+      }
+    };
+  }
 }
 // called every time the mouse is moved
 $('#cvs').mousemove( function (e) {
@@ -302,7 +310,7 @@ $( "#cvs" ).mousedown( function (e) {
 });
 
 $("#cvs").mouseup( function (e) {
-  draggedObject = null;
+  draggingBag = null;
 });
 
 // add on touchmove on tablette
