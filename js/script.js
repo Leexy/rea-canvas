@@ -97,7 +97,7 @@ $(function () {
   /* ajax request to get flow */
   $.ajax({
     type: 'post',
-    url: 'afficheFlux.php',
+    url: 'getFlow.php',
     data: {Category:chosenCategory}
   }).done(function( result ) {
     flow = result;
