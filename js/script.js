@@ -16,6 +16,7 @@ $(function () {
   var imgY = (c.height/2)-66.5;
   var cursorOn = false; // boolean for checking if the game is started
   var soundOn = true;
+  var draggedObject = null;
   var objects;
   var flow;
   /* coord table for flow */
@@ -243,6 +244,7 @@ $("#capture").on("click", function(){
 $('#cvs').bind("contextmenu", function(e) { return false });
 
 function onUserAction(x,y){
+  var needToDraw = false;
   if(cursorOn){ // if the game is not started no collision is possible
     var collidingObjects = get_colliding_objects({ x: x, y: y });
     if (collidingObjects.length >= 2) {
@@ -252,22 +254,36 @@ function onUserAction(x,y){
       random_insert(secondWord, collidingObjects[0].words);
       compute_object_width(collidingObjects[0]);
       compute_object_width(collidingObjects[1]);
-      draw();
+      needToDraw = true;
       if(soundOn){
         collisionSound.play();
       }
     }
-    return false;   
+    
+    if(draggedObject){
+      draggedObject.x1 = x;
+      draggedObject.y = y;
+      compute_object_width(draggedObject);
+      needToDraw = true;
+    }
   }
   else{ // if the mouse is on the start img the cursor change and the image disappears
     if(x <= imgX+100 && x >= imgX+60){
       if(y<= imgY+101&& y >= imgY){ 
         cursorOn=true;
         $( "#cvs" ).addClass("cursor");
-        draw();
+        needToDraw = true;
       }
     }
   }
+  if(needToDraw){
+    draw();
+  }
+}
+
+function onMouseClick(x,y){
+  var clickedObjects = get_colliding_objects({ x: x, y: y });
+  draggedObject = clickedObjects[0];
 }
 // called every time the mouse is moved
 $('#cvs').mousemove( function (e) {
@@ -277,6 +293,18 @@ $('#cvs').mousemove( function (e) {
   onUserAction(x,y);
 
 });
+//called when mouse down
+$( "#cvs" ).mousedown( function (e) {
+  var x = e.offsetX === undefined ? e.clientX-targetOffset.left : e.offsetX;
+  var y = e.offsetY === undefined ? e.clientY-targetOffset.top : e.offsetY;
+  onMouseClick(x,y);
+
+});
+
+$("#cvs").mouseup( function (e) {
+  draggedObject = null;
+});
+
 // add on touchmove on tablette
 $(window).bind('touchmove', function(jQueryEvent) {
   jQueryEvent.preventDefault();
