@@ -53,7 +53,7 @@ background: -webkit-gradient(linear, left top, left bottom, color-stop(60%,rgba(
 	height: 35px;
 	width: 100%;
 	background: #777780;
-  z-index: 1000;
+  	z-index: 1000;
 }
 .market
 {
@@ -77,57 +77,54 @@ background: -webkit-gradient(linear, left top, left bottom, color-stop(60%,rgba(
 	margin-right: auto;
 	margin-left: auto;
 	margin-left: 30px;
-position: absolute;
-margin-right;
-  margin-left: 60px;
+	position: absolute;
+	margin-right;
+  	margin-left: 60px;
 }
 .titre
 {
     -webkit-animation-name: bounceInDown;
-  animation-name: bounceInDown;
-
+  	animation-name: bounceInDown;
     -webkit-animation-duration: 1.2s;
-  animation-duration: 1.2s;
-   -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  z-index: 7;
-
+  	animation-duration: 1.2s;
+  	-webkit-animation-fill-mode: both;
+  	animation-fill-mode: both;
+ 	z-index: 7;
 }
 .titre:hover
 {
   -webkit-animation-name: tada;
   animation-name: tada;
-   -webkit-animation-duration: .75s;
+  -webkit-animation-duration: .75s;
   animation-duration: .75s;
 }
 .titre>h3:first-child
 {
-  font-size: 3.2em;
-  margin-bottom: -10px;
-  left: 0;
-font-weight: 300;
+  	font-size: 3.2em;
+  	margin-bottom: -10px;
+	left: 0;
+	font-weight: 300;
 
 }
 .titre>h1
 {
-  font-size: 6em;
-  margin: 0;
-margin-left: -6px;
-     color: #ffca0a;
+  	font-size: 6em;
+  	margin: 0;
+	margin-left: -6px;
+    color: #ffca0a;
 }
 .sstitre
 {
-  text-transform: uppercase;
-margin-top: 20px;
-  color: #777780;
-font-size: 1em;
-  line-height: 30px;
-  letter-spacing: 0.2em;
-
-  text-decoration: underline;
-  vertical-align: middle;
-  font-weight: 300;
-  width: 250px;
+  	text-transform: uppercase;
+	margin-top: 20px;
+  	color: #777780;
+	font-size: 1em;
+  	line-height: 30px;
+  	letter-spacing: 0.2em;
+	text-decoration: underline;
+	vertical-align: middle;
+	font-weight: 300;
+	width: 250px;
 }
 .sstitre:hover
 {
@@ -135,29 +132,26 @@ font-size: 1em;
 }
 .colgauche>h5
 {
-  padding: 5px ;
-
-  text-transform: uppercase;
-  color: white;
-  background: #777780;
-  font-size: 0.6em;
-  letter-spacing: 0.2em;
-width: 150px;
-
-  margin-bottom: 0;
-  margin-top: -15px;
+	padding: 5px ;
+	text-transform: uppercase;
+	color: white;
+	background: #777780;
+	font-size: 0.6em;
+	letter-spacing: 0.2em;
+	width: 150px;
+	margin-bottom: 0;
+  	margin-top: -15px;
 }
 .title:hover
 {
 	-webkit-animation-name: tada;
-  animation-name: tada;
+  	animation-name: tada;
 }
 .colgauche>img
 {
 	width: 100%;
-
-	 -webkit-animation-duration: 1s;
-  animation-duration: 1s;
+	-webkit-animation-duration: 1s;
+  	animation-duration: 1s;
 
 }
 .icondownload
