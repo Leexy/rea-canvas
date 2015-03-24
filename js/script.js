@@ -306,8 +306,9 @@ $( "#cvs" ).mousedown( function (e) {
   var targetOffset = $(e.target).offset();
   var x = e.offsetX === undefined ? e.clientX-targetOffset.left : e.offsetX;
   var y = e.offsetY === undefined ? e.clientY-targetOffset.top : e.offsetY;
-  onMouseClick(x,y);
-
+  if( e.which == 1 ){
+    onMouseClick(x,y);
+  }
 });
 
 $("#cvs").mouseup( function (e) {
