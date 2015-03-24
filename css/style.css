@@ -92,11 +92,20 @@ html,body{
 	top: 50%; left: 50%;
 	z-index: 99999;
 }
+.popup_cap{
+	display: none;
+	background:url('../img/capture/capture-back.png') no-repeat;
+	float: left;
+	font-size: 1.2em;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+}
 /*-- position fixed for IE6--*/
 *html #fade {
 	position: absolute;
 }
-*html .popup_block {
+*html .popup_block, .popup_cap {
 	position: absolute;
 }
 #imgPlay{
@@ -105,4 +114,14 @@ html,body{
 }
 #gifInstruction {
   margin-top: 140px;
+}
+#cvsDL{
+  	margin-top: 515px;
+  	margin-left: 250px;
+  	position: absolute;
+}
+#cvsBack{
+  	margin-left: 450px;
+  	margin-top: 515px;
+  	position: absolute;
 }

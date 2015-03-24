@@ -17,6 +17,10 @@ if(!isset($_GET['categorie'])){
     <img id="gifInstruction" src="img/instruction/gif_instruction.gif"/>
     <a href="#" id="play" class="close" ><img id="imgPlay" src="img/instruction/instructions_btn_play.png"/></a>
   </div>
+  <div id="popup_capture" class="popup_cap">
+    <a href="#" class="close" ><img id="cvsDL" src="img/capture/download.png"/></a>
+    <a href="#" class="close" ><img id="cvsBack" src="img/capture/retour.png"/></a>
+  </div>
   <div class="content">
     <div class="leftDiv">
       <canvas id="cvs"></canvas>
@@ -25,7 +29,7 @@ if(!isset($_GET['categorie'])){
     <div class="rightDiv">
       <div class="rightDivTop">
         <a href="#" id="showInstruction" class="popInstruction"><img class="icone" id="imgInstruction" src="img/instruction.png"/></a><br/>
-        <img class="icone" id="capture" src="img/capture.png"/><br/>
+        <a href="#" class="popCapture"><img class="icone" id="capture" src="img/capture.png"/></a><br/>
       </div>
       <div class="rightDivMiddle">
         <a href="index.php"><img class="icone" id="imgHome" src="img/home.png"/></a><br/>
