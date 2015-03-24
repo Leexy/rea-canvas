@@ -377,7 +377,7 @@ $(window).bind('touchstart', function(jQueryEvent) {
   /* pop up instruction */
   function showPopUp() {
     //show the pop up
-    $('#popup_instruction').fadeIn().css({ 'width': 665, 'height': 744});
+    $('#popup_instruction').fadeIn().css({ 'width': 610, 'height': 744});
     
     //get the margin to center the pop up
     var popMargTop = ($('#popup_instruction').height() )/2;

@@ -14,6 +14,7 @@ if(!isset($_GET['categorie'])){
 
 <body id="game">
   <div id="popup_instruction" class="popup_block">
+    <img id="gifInstruction" src="img/instruction/gif_instruction.gif"/>
     <a href="#" id="play" class="close" ><img id="imgPlay" src="img/instruction/instructions_btn_play.png"/></a>
   </div>
   <div class="content">

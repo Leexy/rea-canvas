@@ -100,6 +100,9 @@ html,body{
 	position: absolute;
 }
 #imgPlay{
-  	margin-top: 645px;
+  	margin-top: 200px;
   	margin-left: 190px;
+}
+#gifInstruction {
+  margin-top: 140px;
 }
