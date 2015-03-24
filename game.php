@@ -8,7 +8,7 @@ if(!isset($_GET['categorie'])){
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Flux</title>
+  <title>News Break : <?php echo json_encode($_GET['categorie']) ?></title>
   <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 

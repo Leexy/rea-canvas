@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Flux</title>
+  <title>News Break</title>
   <link rel="stylesheet" href="css/indexStyle.css" type="text/css" />
   <link rel="icon" type="img/png" href="favicon.png" />
 
