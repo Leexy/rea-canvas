@@ -2,7 +2,17 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>News Break</title>
+  <title>News Break, informations absurdes et poesie</title>
+  <meta name="Content-Language" content="fr">
+  <meta name="Description" content="News Break est une expérimentation digitale interactive de poésie participative. Découvre l'information en temps réel et reconstruit l'architecture du texte pour créer ta composition poétique.
+  ">
+  <meta name="Keywords" content="fluxs, rss, information, news, actualité, absurde, experimentation, HTML5, canvas, poesie, texte, construction, esthétique,">
+  <meta name="Copyright" content="Grunberg, Mothu">
+  <meta name="Author" content="Agathe Grunberg, Audrey Mothu">
+  <meta name="Identifier-Url" content="http://agrunberg.alwaysdata.net/">
+  <meta name="Distribution" content="global">
+  <meta name="Geography" content="france">
+  
   <link rel="stylesheet" href="css/indexStyle.css" type="text/css" />
   <link rel="icon" type="img/png" href="favicon.png" />
 
