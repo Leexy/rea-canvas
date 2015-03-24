@@ -21,13 +21,19 @@ if(!isset($_GET['categorie'])){
       <canvas id="cvs"></canvas>
     </div>
 
-    <div class="rigthDiv">
-      <a href="#" id="showInstruction" class="popInstruction"><img class="icone" id="imgInstruction" src="img/instruction.png"/></a><br/>
-      <img class="icone" id="capture" src="img/capture.png"/><br/>
-      <a href="index.php"><img class="icone" id="imgHome" src="img/home.png"/></a><br/>
-      <img class="icone" id="imgRepeat" src="img/rejouer.png"/><br/>
-      <img class="icone" id="imgSound" src="img/son_on.png"/><br/>
-      <span class="copyright">&copy; 2015<br/> Audrey Mothu,<br/> Agathe Grunberg</span>
+    <div class="rightDiv">
+      <div class="rightDivTop">
+        <a href="#" id="showInstruction" class="popInstruction"><img class="icone" id="imgInstruction" src="img/instruction.png"/></a><br/>
+        <img class="icone" id="capture" src="img/capture.png"/><br/>
+      </div>
+      <div class="rightDivMiddle">
+        <a href="index.php"><img class="icone" id="imgHome" src="img/home.png"/></a><br/>
+        <img class="icone" id="imgRepeat" src="img/rejouer.png"/><br/>
+        <img class="icone" id="imgSound" src="img/son_on.png"/><br/>
+      </div>
+      <div class="rightDivBottom">
+        <span class="copyright">&copy; 2015<br/> Audrey Mothu,<br/> Agathe Grunberg</span>
+      </div>
     </div>
   </div>
 <audio id="collisionSound" style="display:none" controls="controls">
