@@ -289,6 +289,9 @@ function onUserAction(x,y){
       cursorPosition.x = x;
       cursorPosition.y = y;
       compute_object_width(draggingBag.draggedObject);
+      if(x > draggingBag.draggedObject.x1+draggingBag.draggedObject.width){
+        draggingBag.draggedObject.x1 = x - (draggingBag.draggedObject.width-10);
+      }
     }
     draw();
   }
