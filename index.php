@@ -111,14 +111,21 @@
 <div id="projetUp" class="projetClose">
   <div id="closeProjet"></div>
  
-  <h3>Qu'est ce que le Lorem ipsum</h3>
-  <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. 
-    Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
+   <h3>News Break</h3> 
+   <h3>une expérimentation digitale interactive</h3>
+    <div class="separator"></div>
+   <h4>conçue par Agathe Grunberg et Audrey Mothu.</h4> 
+
+  <p>
+  Avec la démocratisation du web, l'information s'est rendue disponible immédiatement pour tous et par tous.
+  Dans notre vie quotidienne, des fluxs d'informations de toute nature se côtoient et se confrontent sans cesse.
+  Face à cette profusion, la hiérarchie d'importance des nouvelles s'abolit de plus en plus, les informations deviennent alors des brèves, des données réduites à un nombre prédéfini de caractères. Les mots s'amalgament et mutent en une matière inconsistante, presque irréelle.
   </p>
-  <h3>D'ou vient-il ? </h3>
-  <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. 
-    Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
-  </p>
+  <p>Notre concept s'inspire de la démarche de la poésie concrète en considérant le texte comme un objet sensible. Elle questionne l'information d'un point de vue esthétique et spatiale. En déconstruisant le texte, elle génère une nouvelle structure poétique.
+  </p><blockquote cite="http://www.persee.fr/web/revues/home/prescript/article/colan_0336-1500_1970_num_5_1_3777">« Ces poésies ne se contentent pas d'explorer, comme l'a fait le surréalisme, à l'aide de postulats linguistiques fixés et imposés, donc emprisonnants : elles isolent la langue, la modifient, la bouleversent, libérant ainsi sa vie profonde, elles créent des structures neuves (aussi bien acoustiques que visuelles, aussi bien syntaxiques que sémantiques) provoquant l'apparition d'états jusqu'alors inconnus et plaçant l'homme dans un état permanent de création et de liberté. »
+  </blockquote><cite>Pierre Garnier : Spatialisme et poésie concrète (Gallimard, Paris, 1968).</cite>
+  <p>L'expérience que nous proposons part de ce constat et propose au lecteur de tirer parti de ce phénomène. Il devient acteur d'un processus de mutation du langage, en renouvelant l'architecture des phrases, en ré-assemblant les mots dans une nouvelle composition à la fois poétique, sémantique et visuelle.</p> 
+  
   <div class="source">
    <h3>Nos sources </h3>
    <p>Nous avons pris le parti d'exploiter les fils RSS de différentes sources pour réunir des informations actuelles. 
