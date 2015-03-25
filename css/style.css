@@ -55,24 +55,46 @@ html,body{
 	vertical-align: middle;
 
 }
-.rightDiv{
+/*		barre latérale menu		*/
+.rightDiv
+{
 	width: 130px;
 	background-color: #00acca;
 	text-align: center;
 	display: table-cell;
+	padding: 30px;
 }
-.icone{
+
+.rightDivTop
+{
+	height: 30%;
+}
+.rightDivMiddle
+{
+	height: 50%;
+	margin-bottom: 70%;
+}
+.rightDivMiddle>.icone
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+.icone
+{
 	cursor: pointer;
+	padding-bottom: 20px;	
+	/*
 	padding-top: 35%;
 	padding-bottom: 35%;
+	*/
 }
 .copyright{
-	/*position: fixed;*/
-	bottom: 10px;
+	/*position: relative;*/	
 	right: 20px;
 	color: #777780;
 	font-size: small;
 }
+
 /* pop up instruction */
 
 #fade { /* dark opacity */

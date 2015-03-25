@@ -39,13 +39,13 @@ if(!isset($_GET['categorie'])){
 
     <div class="rightDiv">
       <div class="rightDivTop">
-        <a href="#" id="showInstruction" class="popInstruction"><img class="icone" id="imgInstruction" src="img/instruction.png"/></a><br/>
         <a href="#" class="popCapture"><img class="icone" id="capture" src="img/capture.png"/></a><br/>
       </div>
       <div class="rightDivMiddle">
         <a href="index.php"><img class="icone" id="imgHome" src="img/home.png"/></a><br/>
         <img class="icone" id="imgRepeat" src="img/rejouer.png"/><br/>
         <img class="icone" id="imgSound" src="img/son_on.png"/><br/>
+        <a href="#" id="showInstruction" class="popInstruction"><img class="icone" id="imgInstruction" src="img/instruction.png"/></a><br/>
       </div>
       <div class="rightDivBottom">
         <span class="copyright">&copy; 2015<br/> Audrey Mothu,<br/> Agathe Grunberg</span>
