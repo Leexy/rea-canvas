@@ -270,7 +270,18 @@ function onUserAction(x,y){
   cursorPosition.x = x;
   cursorPosition.y = y;
   if(cursorOn){ // if the game is not started no collision is possible
+    if(draggingBag){
+      draggingBag.draggedObject.x1 = x + draggingBag.delta.x;
+      draggingBag.draggedObject.y = y + draggingBag.delta.y;
+      compute_object_width(draggingBag.draggedObject);
+      if(x > draggingBag.draggedObject.x1+draggingBag.draggedObject.width){
+        draggingBag.draggedObject.x1 = x - (draggingBag.draggedObject.width-10);
+      }
+    }
     var collidingObjects = get_colliding_objects({ x: x, y: y });
+    if (draggingBag && collidingObjects.indexOf(draggingBag.draggedObject) === -1) {
+      collidingObjects = [draggingBag.draggedObject].concat(collidingObjects);
+    }
     if (collidingObjects.length >= 2) {
       var firstWord = extract_random_word(collidingObjects[0].words);
       var secondWord = extract_random_word(collidingObjects[1].words);
@@ -280,15 +291,6 @@ function onUserAction(x,y){
       compute_object_width(collidingObjects[1]);
       if(soundOn){
         collisionSound.play();
-      }
-    }
-    
-    if(draggingBag){
-      draggingBag.draggedObject.x1 = x + draggingBag.delta.x;
-      draggingBag.draggedObject.y = y + draggingBag.delta.y;
-      compute_object_width(draggingBag.draggedObject);
-      if(x > draggingBag.draggedObject.x1+draggingBag.draggedObject.width){
-        draggingBag.draggedObject.x1 = x - (draggingBag.draggedObject.width-10);
       }
     }
     draw();
