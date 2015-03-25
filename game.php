@@ -55,6 +55,12 @@ if(!isset($_GET['categorie'])){
 <audio id="collisionSound" style="display:none" controls="controls">
   <source src="sound/perso.mp3" type="audio/mp3">
 </audio>
+<audio id="backgroundSound" style="display:none" controls="controls">
+  <source src="sound/ambiance.mp3" type="audio/mp3">
+</audio>
+<audio id="clickSound" style="display:none" controls="controls">
+  <source src="sound/pose.mp3" type="audio/mp3">
+</audio>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
 window.chosenCategory = <?php echo json_encode($_GET['categorie']) ?>;

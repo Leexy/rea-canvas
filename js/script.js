@@ -4,6 +4,8 @@ $(function () {
   var CURSOR_IMAGE_HEIGHT = 64;
   //var OBJECTS_GAP = CURSOR_IMAGE_HEIGHT - 20;
   var collisionSound = document.getElementById('collisionSound');
+  var clickSound = document.getElementById('clickSound');
+  var backgroundSound = document.getElementById('backgroundSound');
   /* init canvas elem */
   var c=document.getElementById("cvs");
   var ctx=c.getContext("2d");
@@ -95,7 +97,11 @@ $(function () {
   var font = ['Times', 'Palatino', 'Gill Sans', 'Andale Mono', 'Courrier', 'Helvetica Narrow' ,'Impact', 'Arial', 'Lucida console'];
   /* font color table */
   var fontColor = ['#469991', '#78ccc4', '#3f6e8a', '#5ea4cc', '#384c78', '#bf5458' ,'#ff7075'];
-
+  
+  /* background sound */
+  if(soundOn){
+    backgroundSound.play();
+  }
   /* AJAX request to get flow */
   $.ajax({
     type: 'post',
@@ -305,6 +311,9 @@ $( "#cvs" ).mousedown( function (e) {
 
 $("#cvs").mouseup( function (e) {
   draggingBag = null;
+    if(soundOn){
+      clickSound.play();
+    }
 });
 
 // add on touchmove on tablette
@@ -359,6 +368,7 @@ $(window).bind('touchstart', function(jQueryEvent) {
         function () { $(this).attr("src","img/son_off.png"); }
       );
       soundOn = false;
+      backgroundSound.pause();
     }else{
       $("#imgSound").attr("src","img/son_on.png");
       $("#imgSound").hover(
@@ -366,6 +376,7 @@ $(window).bind('touchstart', function(jQueryEvent) {
         function () { $(this).attr("src","img/son_on.png"); }
       );
       soundOn = true;
+      backgroundSound.play();
     } 
   });
   
