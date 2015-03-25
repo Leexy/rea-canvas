@@ -2,6 +2,8 @@ $(function () {
   var SPACE_SIZE = 5;
   var CURSOR_IMAGE_WIDTH = 56;
   var CURSOR_IMAGE_HEIGHT = 64;
+  var CURSOR_IMAGE = new Image();
+  CURSOR_IMAGE.src = 'img/monstre_curseur.png';
   //var OBJECTS_GAP = CURSOR_IMAGE_HEIGHT - 20;
   var collisionSound = document.getElementById('collisionSound');
   var clickSound = document.getElementById('clickSound');
@@ -18,6 +20,11 @@ $(function () {
   var imgX = (c.width/2)-65.5; // coord x of starting img
   var imgY = (c.height/2)-66.5;
   var cursorOn = false; // boolean for checking if the game is started
+  var cursorIn = false;
+  var cursorPosition = {
+    x: 0,
+    y: 0,
+  };
   var soundOn = true;
   var draggingBag = null;
   var objects;
@@ -203,6 +210,19 @@ $(function () {
       ctx.stroke();
       ctx.restore();*/
     }
+    if(draggingBag){
+      ctx.save();
+      ctx.globalAlpha=0.6;
+      ctx.fillStyle = '#ffca0a';
+      ctx.beginPath();
+      ctx.arc(cursorPosition.x+CURSOR_IMAGE_WIDTH/2,cursorPosition.y+CURSOR_IMAGE_HEIGHT/2,50,0, Math.PI*2);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+    if (cursorOn && cursorIn) {
+      ctx.drawImage(CURSOR_IMAGE, cursorPosition.x, cursorPosition.y);
+    }
   }
 
 function get_colliding_objects(mousePos){
@@ -247,7 +267,8 @@ function random_insert(element, array) {
 
 /* mouse move on canvas */
 function onUserAction(x,y){
-  var needToDraw = false;
+  cursorPosition.x = x;
+  cursorPosition.y = y;
   if(cursorOn){ // if the game is not started no collision is possible
     var collidingObjects = get_colliding_objects({ x: x, y: y });
     if (collidingObjects.length >= 2) {
@@ -257,7 +278,6 @@ function onUserAction(x,y){
       random_insert(secondWord, collidingObjects[0].words);
       compute_object_width(collidingObjects[0]);
       compute_object_width(collidingObjects[1]);
-      needToDraw = true;
       if(soundOn){
         collisionSound.play();
       }
@@ -266,21 +286,20 @@ function onUserAction(x,y){
     if(draggingBag){
       draggingBag.draggedObject.x1 = x + draggingBag.delta.x;
       draggingBag.draggedObject.y = y + draggingBag.delta.y;
+      cursorPosition.x = x;
+      cursorPosition.y = y;
       compute_object_width(draggingBag.draggedObject);
-      needToDraw = true;
     }
+    draw();
   }
   else{ // if the mouse is on the start img the cursor change and the image disappears
     if(x <= imgX+100 && x >= imgX+60){
       if(y<= imgY+101&& y >= imgY){ 
         cursorOn=true;
         $( "#cvs" ).addClass("cursor");
-        needToDraw = true;
+        draw();
       }
     }
-  }
-  if(needToDraw){
-    draw();
   }
 }
 
@@ -298,6 +317,16 @@ function onMouseClick(x,y){
   }
 }
 
+function releaseDrag(){
+  if (draggingBag) {
+    draggingBag.draggedObject.highlighted = false;
+    draggingBag = null;
+    draw();
+    if(soundOn){
+      clickSound.play();
+    }
+  }
+}
 /*** MOUSE EVENTS ***/
 // Disable rightclick so that we can use the right button as input on the canvas
 $('#cvs').bind("contextmenu", function(e) { return false });
@@ -319,15 +348,14 @@ $( "#cvs" ).mousedown( function (e) {
   }
 });
 
-$("#cvs").mouseup( function (e) {
-  draggingBag.draggedObject.highlighted = false;
-  draggingBag = null;
-  draw();
-  if(soundOn){
-    clickSound.play();
-  }
+$("#cvs").mouseup(releaseDrag);
+$("#cvs").mouseenter(function(e){
+  cursorIn=true;
 });
-
+$("#cvs").mouseleave(function(e){
+  cursorIn=false;
+  releaseDrag();
+});
 // add on touchmove on tablette
 $(window).bind('touchmove', function(jQueryEvent) {
   jQueryEvent.preventDefault();

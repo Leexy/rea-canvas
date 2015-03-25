@@ -15,7 +15,7 @@ html,body{
 	border-radius:10px 10px;
 }
 .cursor{
-	cursor: url('../img/monstre_curseur.png'), pointer;
+	cursor: none;
 }
 .People{
 	background: url('../img/background_canvas/people_back.png') repeat #777780;
