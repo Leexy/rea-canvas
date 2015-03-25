@@ -286,8 +286,6 @@ function onUserAction(x,y){
     if(draggingBag){
       draggingBag.draggedObject.x1 = x + draggingBag.delta.x;
       draggingBag.draggedObject.y = y + draggingBag.delta.y;
-      cursorPosition.x = x;
-      cursorPosition.y = y;
       compute_object_width(draggingBag.draggedObject);
       if(x > draggingBag.draggedObject.x1+draggingBag.draggedObject.width){
         draggingBag.draggedObject.x1 = x - (draggingBag.draggedObject.width-10);
