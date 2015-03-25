@@ -12,7 +12,7 @@
   <meta name="Identifier-Url" content="http://agrunberg.alwaysdata.net/">
   <meta name="Distribution" content="global">
   <meta name="Geography" content="france">
-  
+
   <link rel="stylesheet" href="css/indexStyle.css" type="text/css" />
   <link rel="icon" type="img/png" href="favicon.png" />
 
@@ -121,8 +121,8 @@
   </p>
   <div class="source">
    <h3>Nos sources </h3>
-   <p>Nous avons pris le partis d'exploiter les fils RSS de différentes sources pour réunir des informations actuelles. 
-    Nous remercions toutes les sources qui nous ont servit au développement de ce site expérimental.</p>
+   <p>Nous avons pris le parti d'exploiter les fils RSS de différentes sources pour réunir des informations actuelles. 
+    Nous remercions toutes les sources qui nous ont servis au développement de ce site expérimental.</p>
     <ul>
       <li><a href="http://www.purepeople.com/">Fluxs People <div class="link"></div></a></li>
       <li><a href="http://www.lemonde.fr/politique/">Fluxs Politique <div class="link"></div></a></li>

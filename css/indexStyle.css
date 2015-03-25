@@ -558,6 +558,7 @@ footer>p
   height: 40px;
   background: url('../img/home/close.png');
   float: right;
+  cursor: pointer;
 }
 #closeProjet:hover
 {
@@ -575,6 +576,7 @@ footer>p
   height: 40px;
   background: url('../img/home/close.png');
   float: right;
+  cursor: pointer;
 }
 #buttonClose:hover
 {
