@@ -137,6 +137,7 @@ $(function () {
         fontSize = "1.5em";
         fontWord =['1.8em', '2em', '2.5em'];
       } 
+      object.highlighted = false;
       /* get the flow word by word */
       var words = object.title.split(' ');
       var randomIndex;
@@ -181,6 +182,14 @@ $(function () {
     {
       //ctx.save();      
       var o = objects[i];
+      if(o.highlighted){
+        /// color for background
+        ctx.globalAlpha=0.6;
+        ctx.fillStyle = '#ffca0a';
+        /// draw background rect assuming height of font
+        ctx.fillRect(o.x1, o.y-30, o.width, 40);
+        ctx.globalAlpha=1; 
+      }
       var currentX = o.x1;
       for(var j=0; j<o.words.length;j++){
         var word = o.words[j];
@@ -285,6 +294,7 @@ function onMouseClick(x,y){
         y : clickedObject.y - y,
       }
     };
+    draggingBag.draggedObject.highlighted = true;
   }
 }
 
@@ -310,10 +320,12 @@ $( "#cvs" ).mousedown( function (e) {
 });
 
 $("#cvs").mouseup( function (e) {
+  draggingBag.draggedObject.highlighted = false;
   draggingBag = null;
-    if(soundOn){
-      clickSound.play();
-    }
+  draw();
+  if(soundOn){
+    clickSound.play();
+  }
 });
 
 // add on touchmove on tablette
