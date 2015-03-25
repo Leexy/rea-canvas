@@ -117,11 +117,11 @@ html,body{
 }
 #cvsDL{
   	margin-top: 515px;
-  	margin-left: 250px;
+  	margin-left: 450px;
   	position: absolute;
 }
 #cvsBack{
-  	margin-left: 450px;
+  	margin-left: 250px;
   	margin-top: 515px;
   	position: absolute;
 }

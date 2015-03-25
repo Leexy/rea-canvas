@@ -422,6 +422,9 @@ $(window).bind('touchstart', function(jQueryEvent) {
     $('#popup_capture').append(imgObj);
     imgObj.style.position = "absolute";
     imgObj.style.margin = "150px 0px 0px 110px";
+    imgObj.style.borderRadius = '7px'; // standard
+    imgObj.style.MozBorderRadius = '7px'; // Mozilla
+    imgObj.style.WebkitBorderRadius = '7px'; // WebKit
     return false;
   } 
   $('a.popCapture').on('click',showPopUpCapture);  

@@ -29,8 +29,8 @@ if(!isset($_GET['categorie'])){
     <a href="#" id="play" class="close" ><img id="imgPlay" src="img/instruction/instructions_btn_play.png"/></a>
   </div>
   <div id="popup_capture" class="popup_cap">
-    <a href="#" class="close" ><img id="cvsDL" src="img/capture/download.png"/></a>
     <a href="#" class="close" ><img id="cvsBack" src="img/capture/retour.png"/></a>
+    <a href="#" class="close" ><img id="cvsDL" src="img/capture/download.png"/></a>
   </div>
   <div class="content">
     <div class="leftDiv">
