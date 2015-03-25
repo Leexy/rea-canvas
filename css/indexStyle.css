@@ -737,7 +737,7 @@ opacity: 0;
   -o-transition: all 0.75s ease-in-out;
   transition: all 0.75s ease-in-out;
   padding: 100px;
-  width: 50%;
+  /*width: 50%;*/
 
 }
 .shareUp
