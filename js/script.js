@@ -4,6 +4,7 @@ $(function () {
   var CURSOR_IMAGE_HEIGHT = 64;
   //var OBJECTS_GAP = CURSOR_IMAGE_HEIGHT - 20;
   var collisionSound = document.getElementById('collisionSound');
+  /* init canvas elem */
   var c=document.getElementById("cvs");
   var ctx=c.getContext("2d");
   c.width = document.body.clientWidth-350;//document.body.clientWidth;
@@ -95,7 +96,7 @@ $(function () {
   /* font color table */
   var fontColor = ['#469991', '#78ccc4', '#3f6e8a', '#5ea4cc', '#384c78', '#bf5458' ,'#ff7075'];
 
-  /* ajax request to get flow */
+  /* AJAX request to get flow */
   $.ajax({
     type: 'post',
     url: 'getFlow.php',
@@ -105,6 +106,7 @@ $(function () {
     init(flow);
   });
 
+  /*** FUNCTIONS ***/
   function init(result){
     ctx.clearRect(0, 0, width, height);
     objects = JSON.parse(result);
@@ -228,9 +230,7 @@ function random_insert(element, array) {
   array.splice(get_random_index(array.length), 0, element);
 }
 
-// Disable rightclick so that we can use the right button as input on the canvas
-$('#cvs').bind("contextmenu", function(e) { return false });
-
+/* mouse move on canvas */
 function onUserAction(x,y){
   var needToDraw = false;
   if(cursorOn){ // if the game is not started no collision is possible
@@ -281,13 +281,17 @@ function onMouseClick(x,y){
     };
   }
 }
+
+/*** MOUSE EVENTS ***/
+// Disable rightclick so that we can use the right button as input on the canvas
+$('#cvs').bind("contextmenu", function(e) { return false });
+
 // called every time the mouse is moved
 $('#cvs').mousemove( function (e) {
   var targetOffset = $(e.target).offset();
   var x = e.offsetX === undefined ? e.clientX-targetOffset.left : e.offsetX;
   var y = e.offsetY === undefined ? e.clientY-targetOffset.top : e.offsetY;
   onUserAction(x,y);
-
 });
 //called when mouse down
 $( "#cvs" ).mousedown( function (e) {
@@ -319,6 +323,8 @@ $(window).bind('touchstart', function(jQueryEvent) {
   var y= event.touches[0].pageY-targetOffset.top;
   onUserAction(x,y);
 });
+
+/*** ICON RIGHT DIV EVENT ***/
   /* hover games icon */
   $("#imgHome").hover(
     function () { $(this).attr("src","img/home_hover.png"); },
@@ -369,6 +375,7 @@ $(window).bind('touchstart', function(jQueryEvent) {
     init(flow);
   });
 
+/*** POP UP CODE ***/
   /* pop up instruction */
   function showPopUp() {
     //show the pop up
