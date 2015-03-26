@@ -460,7 +460,7 @@ video#bgvid {
 #mail{
   height: 44px;
   width: 44px;
-  margin-top: 430px;
+  margin-top: 370px;
   position: fixed;
   margin-left: 50px;
 }
@@ -468,8 +468,8 @@ video#bgvid {
   height: 44px;
   width: 44px;
   position: fixed;
-  margin-top: 310px;
-  margin-left: 430px; 
+  margin-top: 300px;
+  margin-left: 355px; 
 }
 #facebook{
   height: 44px;
@@ -482,7 +482,7 @@ video#bgvid {
     height: 63px;
     width: 61px;
     position: fixed;
-    margin-top: 645px;
+    margin-top: 550px;
     margin-left: 240px;
 }
 
