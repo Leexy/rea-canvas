@@ -61,6 +61,7 @@
 </div>
 <!-- catégories -->
 <div class="table">
+  <img src="img/home/chrome.png" class="chrome"> 
   <div class="row"> 
     <div class="categorie" id="Politique" value="Politique">
       <div class="icone"><img src="img/home/politique.svg" class="icon"></div><p>Politique</p>

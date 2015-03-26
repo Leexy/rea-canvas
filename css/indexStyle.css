@@ -359,7 +359,7 @@ video#bgvid {
 {
   width: 50%;
   margin-left: 50%;
-  margin-top: 15%;
+  margin-top: 2%;
   z-index: 5;
   position: absolute;
 }
@@ -485,7 +485,11 @@ video#bgvid {
     margin-top: 550px;
     margin-left: 200px;
 }
-
+.chrome{ 
+  margin-bottom: 12%; 
+  margin-left: 85%; 
+  width: 50px; 
+}
 /*       footer    */
 footer
 {
