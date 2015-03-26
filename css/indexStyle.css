@@ -458,32 +458,32 @@ video#bgvid {
 }
 /* pop up button */
 #mail{
-  height: 44px;
-  width: 44px;
-  margin-top: 370px;
+  height: 30px;
+  width: 30px;
+  margin-top: 30px;
   position: fixed;
-  margin-left: 50px;
+  margin-left: 30px;
 }
 #twitter{
-  height: 44px;
-  width: 44px;
+  height: 29px;
+  width: 29px;
   position: fixed;
-  margin-top: 300px;
-  margin-left: 355px; 
+  margin-top: 75px;
+  margin-left: 30px; 
 }
 #facebook{
-  height: 44px;
-  width: 44px;
+  height: 29px;
+  width: 29px;
   position: fixed;
-  margin-top: 170px;
-  margin-left: 70px;
+  margin-top: 120px;
+  margin-left: 30px;
 }
 #home{
     height: 63px;
     width: 61px;
     position: fixed;
-    margin-top: 550px;
-    margin-left: 200px;
+    margin-top: 635px;
+    margin-left: 235px;
 }
 .chrome{ 
   margin-bottom: 12%; 

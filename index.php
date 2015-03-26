@@ -103,7 +103,7 @@
 <footer> 
   <a id="projet" >Le projet</a><!--
   <a href="#" class="projet" id="projet">Le projet</a>-->|
- <img src="img/credit/tweet_icon.png"><img src="img/credit/fb_icon.png">
+ <img src="img/home/tweet_icon.png"><img src="img/home/fb_icon.png">
   <a href="#" id="share"> Partager</a>
   <p>  &copy; 2015 - Agathe Grunberg, Audrey Mothu</p>
 </footer>
