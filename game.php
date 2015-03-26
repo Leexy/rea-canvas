@@ -8,7 +8,7 @@ if(!isset($_GET['categorie'])){
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>News Break : <?php echo json_encode($_GET['categorie']) ?></title>
+  <title>News Break : <?php echo htmlspecialchars($_GET['categorie']) ?></title>
 
   <meta name="Content-Language" content="fr">
   <meta name="Description" content="News Break est une expérimentation digitale interactive de poésie participative. Découvre l'information en temps réel et reconstruit l'architecture du texte pour créer ta composition poétique.
