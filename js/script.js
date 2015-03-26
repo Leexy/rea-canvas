@@ -107,6 +107,7 @@ $(function () {
   
   /* background sound */
   if(soundOn){
+    backgroundSound.loop = true;
     backgroundSound.play();
   }
   /* AJAX request to get flow */
@@ -420,6 +421,7 @@ $(window).bind('touchstart', function(jQueryEvent) {
         function () { $(this).attr("src","img/son_on.png"); }
       );
       soundOn = true;
+      backgroundSound.loop = true;
       backgroundSound.play();
     } 
   });
