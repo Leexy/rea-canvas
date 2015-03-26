@@ -13,53 +13,71 @@ html,body{
 	-moz-border-radius:10px 10px;
 	-webkit-border-radius:10px 10px;
 	border-radius:10px 10px;
+	margin-top: 90px;
 }
 .cursor{
 	cursor: none;
 }
 .People{
-	background: url('../img/background_canvas/people_back.png') repeat #777780;
+	background: url('../img/background_canvas/people.png')  no-repeat;
 }
 .Culture{
-	background: url('../img/background_canvas/culture_back.png') repeat #777780;
+	background: url('../img/background_canvas/culture.png')  no-repeat;
 }
 .Technologie{
-	background: url('../img/background_canvas/techno_back.png') repeat #777780;
+	background: url('../img/background_canvas/techno.png')  no-repeat;
 }
 .Politique{
-	background: url('../img/background_canvas/politique_back.png') repeat #777780;
+	background: url('../img/background_canvas/politique.png')  no-repeat;
 }
 .Sport{
-	background: url('../img/background_canvas/sport_back.png') repeat #777780;
+	background: url('../img/background_canvas/sport.png')  no-repeat;
 }
 .Cinema{
-	background: url('../img/background_canvas/cinema_back.png') repeat #777780;
+	background: url('../img/background_canvas/cinema.png')  no-repeat;
 }
 .International{
-	background: url('../img/background_canvas/international_back.png') repeat #777780;
+	background: url('../img/background_canvas/international.png')  no-repeat;
 }
 .Sciences{
-	background: url('../img/background_canvas/sciences_back.png') repeat #777780;
+	background: url('../img/background_canvas/sciences.png')  no-repeat;
 }
 .Economie{
-	background: url('../img/background_canvas/economie_back.png') repeat #777780;
+	background: url('../img/background_canvas/economie.png')  no-repeat;
 }
 .content{
 	width: 100%;
 	height: 100%;
 	display: table;
+	background-color: #dfdfe5;
 
+}
+.mainDivTop{
+	display: table-row;;
+	width: 100%;
+	height: 110px;
+	background-color: #00acca;
+	position: fixed;
+	top: 0px;
+}
+.middleCircle{
+	border-radius: 50%;
+	width: 100px;
+	height: 100px; 
+	margin-top: 5px;
+	background-color: #777780;
+	margin-left:auto;
+	margin-right:auto;
 }
 .leftDiv{
 	display: table-cell;
 	vertical-align: middle;
-
 }
 /*		barre latérale menu		*/
 .rightDiv
 {
-	width: 130px;
-	background-color: #00acca;
+	width: 95px;
+	background-color: #777780;
 	text-align: center;
 	display: table-cell;
 	padding: 30px;
@@ -67,7 +85,7 @@ html,body{
 
 .rightDivTop
 {
-	height: 30%;
+	height: 35%;
 }
 .rightDivMiddle
 {
@@ -88,10 +106,13 @@ html,body{
 	padding-bottom: 35%;
 	*/
 }
+#capture {
+  margin-top: 125px;
+}
 .copyright{
 	/*position: relative;*/	
 	right: 20px;
-	color: #777780;
+	color: white;
 	font-size: small;
 }
 

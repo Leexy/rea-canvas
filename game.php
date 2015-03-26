@@ -33,6 +33,7 @@ if(!isset($_GET['categorie'])){
     <a href="#" class="close" ><img id="cvsDL" src="img/capture/download.png"/></a>
   </div>
   <div class="content">
+    <div class="mainDivTop"><div class="middleCircle"></div></div>
     <div class="leftDiv">
       <canvas id="cvs"></canvas>
     </div>

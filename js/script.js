@@ -127,7 +127,7 @@ $(function () {
     objects = JSON.parse(result);
     var randomCoord = get_random_index(coordSet.length); 
     objects.forEach(function (object,i) {
-      $( ".leftDiv" ).addClass(object.category);
+      $( ".middleCircle" ).addClass(object.category);
       var randomFont = get_random_index(font.length); // random font for 1 flow
       object.x1 = coordSet[randomCoord][i].x; //random coord
       object.y = coordSet[randomCoord][i].y;
