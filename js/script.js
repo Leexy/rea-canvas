@@ -1,5 +1,6 @@
 $(function () {
-  var SPACE_SIZE = 5;
+  var SPACE_SIZE = 5; // space between words
+  /* init cursor */
   var CURSOR_IMAGE_WIDTH = 56;
   var CURSOR_IMAGE_HEIGHT = 64;
   var CURSOR_IMAGE = new Image();
@@ -15,6 +16,7 @@ $(function () {
   c.height = 700;//document.body.clientHeight;
   var width = $('#cvs').width(); /// width of canvas 
   var height = $('#cvs').height(); // height of canvas
+  /* init canvas started img */
   var img = new Image();   // new object Image
   img.src = 'img/start.png'; // pass to source
   var imgX = (c.width/2)-65.5; // coord x of starting img
@@ -206,10 +208,6 @@ $(function () {
         ctx.fillText(word.text,currentX,o.y);
         currentX += word.width + SPACE_SIZE;
       }
-      /*ctx.moveTo(o.x1,o.y);
-      ctx.lineTo(o.x2,o.y);
-      ctx.stroke();
-      ctx.restore();*/
     }
     if(draggingBag){
       ctx.save();
