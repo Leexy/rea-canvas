@@ -69,6 +69,7 @@ if(!isset($_GET['categorie'])){
 window.chosenCategory = <?php echo json_encode($_GET['categorie']) ?>;
 </script>
 <script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/popUpGame.js"></script>
 
 </body>
 

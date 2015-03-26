@@ -187,7 +187,7 @@ $("div.categorie").click(function() {
   document.location = "game.php?categorie="+encodeURIComponent(cat);
   });
 </script>
-<script type="text/javascript" src="js/popUpScript.js"></script>
+<script type="text/javascript" src="js/popUpIndex.js"></script>
  <script type="text/javascript" src="js/footerwindow.js"></script>
 
  <div id="fb-root"></div>
