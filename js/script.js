@@ -446,7 +446,7 @@ $(window).bind('touchstart', function(jQueryEvent) {
     
     //Apply Margin to Popup
     $('#popup_instruction').css({ 
-      'margin-top' : -popMargTop,
+      'margin-top' : -popMargTop + 40,
       'margin-left' : -popMargLeft
     });
     
