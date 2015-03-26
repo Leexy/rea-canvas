@@ -358,7 +358,9 @@ $("#cvs").mouseenter(function(e){
 });
 $("#cvs").mouseleave(function(e){
   cursorIn=false;
-  draw();
+  if(cursorOn){
+    draw();
+  }
   releaseDrag();
 });
 // add on touchmove on tablette
