@@ -97,7 +97,7 @@
 
 </div>
 
-<div class="sprite"><img src="img/home/sprite_home.gif" class="wait"></div>
+<div class="sprite"><img src="img/home/wait.gif" class="wait"></div>
 </div>
 <footer> 
   <a id="projet" >Le projet</a><!--
