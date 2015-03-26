@@ -8,6 +8,7 @@ $(function () {
   var collisionSound = document.getElementById('collisionSound');
   var clickSound = document.getElementById('clickSound');
   var backgroundSound = document.getElementById('backgroundSound');
+  var captureSound = document.getElementById('captureSound');
   /* init canvas elem */
   var c=document.getElementById("cvs");
   var ctx=c.getContext("2d");
@@ -465,6 +466,7 @@ $(window).bind('touchstart', function(jQueryEvent) {
   /* pop up capture */
   var imgObj = new Image();
   function showPopUpCapture() {
+    captureSound.play();
     //show the pop up
     $('#popup_capture').fadeIn().css({ 'width': 818, 'height': 599});
     
