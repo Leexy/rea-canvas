@@ -359,7 +359,7 @@ video#bgvid {
 {
   width: 50%;
   margin-left: 50%;
-  margin-top: 2%;
+  margin-top: 10%;
   z-index: 5;
   position: absolute;
 }
@@ -485,11 +485,6 @@ video#bgvid {
     margin-top: 450px;
     margin-left: 165px;
 }
-.chrome{ 
-  margin-bottom: 12%; 
-  margin-left: 85%; 
-  width: 50px; 
-}
 /*       footer    */
 footer
 {
@@ -523,7 +518,7 @@ footer>a
 }
 footer>a:first-child
 {
-  margin-right: 20px;
+  /*margin-right: 20px;*/
 }
 footer>a:first-child:hover,
 footer>a:nth-child(3):hover

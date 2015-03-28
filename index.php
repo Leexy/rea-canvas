@@ -61,7 +61,6 @@
 </div>
 <!-- catégories -->
 <div class="table">
-  <img src="img/home/chrome.png" class="chrome"> 
   <div class="row"> 
     <div class="categorie" id="Politique" value="Politique">
       <div class="icone"><img src="img/home/politique.svg" class="icon"></div><p>Politique</p>
@@ -101,7 +100,8 @@
 <div class="sprite"><img src="img/home/wait.gif" class="wait"></div>
 </div>
 <footer> 
-  <a id="projet" >Le projet</a><!--
+  <a id="projet" >Le projet</a> 
+  <img src="img/home/chrome.png" class="chrome"> <!--
   <a href="#" class="projet" id="projet">Le projet</a>-->|
  <img src="img/home/tweet_icon.png"><img src="img/home/fb_icon.png">
   <a href="#" id="share"> Partager</a>
