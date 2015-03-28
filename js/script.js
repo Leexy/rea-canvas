@@ -10,17 +10,17 @@ $(function () {
   var clickSound = document.getElementById('clickSound');
   var backgroundSound = document.getElementById('backgroundSound');
   /* init canvas elem */
-  var c=document.getElementById("cvs");
-  var ctx=c.getContext("2d");
-  c.width = document.body.clientWidth-350;//document.body.clientWidth;
-  c.height = 700;//document.body.clientHeight;
-  var width = $('#cvs').width(); /// width of canvas 
-  var height = $('#cvs').height(); // height of canvas
+  var ctx=document.getElementById("cvs").getContext("2d");
+  var $canvas = $("#cvs");
+  var width = $canvas.width(); /// width of canvas 
+  var height = $canvas.height(); // height of canvas
+  $canvas.attr("width", width);
+  $canvas.attr("height", height);
   /* init canvas started img */
   var img = new Image();   // new object Image
   img.src = 'img/start.png'; // pass to source
-  var imgX = (c.width/2)-65.5; // coord x of starting img
-  var imgY = (c.height/2)-66.5;
+  var imgX = (width/2)-65.5; // coord x of starting img
+  var imgY = (height/2)-66.5;
   var cursorOn = false; // boolean for checking if the game is started
   var cursorIn = false;
   var cursorPosition = {
@@ -250,8 +250,8 @@ function compute_object_width(object) {
   if(object.x1 < 0){
     object.x1 = 0;
   }
-  else if (object.x1 + object.width >= c.width) {
-    object.x1 = c.width - object.width;
+  else if (object.x1 + object.width >= width) {
+    object.x1 = width - object.width;
   }
   object.x2 = object.x1 + object.width;
 }
@@ -298,7 +298,7 @@ function onUserAction(x,y){
     if(x <= imgX+100 && x >= imgX+60){
       if(y<= imgY+101&& y >= imgY){ 
         cursorOn=true;
-        $( "#cvs" ).addClass("cursor");
+        $canvas.addClass("cursor");
         draw();
       }
     }
@@ -331,17 +331,17 @@ function releaseDrag(){
 }
 /*** MOUSE EVENTS ***/
 // Disable rightclick so that we can use the right button as input on the canvas
-$('#cvs').bind("contextmenu", function(e) { return false });
+$canvas.bind("contextmenu", function(e) { return false });
 
 // called every time the mouse is moved
-$('#cvs').mousemove( function (e) {
+$canvas.mousemove( function (e) {
   var targetOffset = $(e.target).offset();
   var x = e.offsetX === undefined ? e.clientX-targetOffset.left : e.offsetX;
   var y = e.offsetY === undefined ? e.clientY-targetOffset.top : e.offsetY;
   onUserAction(x,y);
 });
 //called when mouse down
-$( "#cvs" ).mousedown( function (e) {
+$canvas.mousedown( function (e) {
   var targetOffset = $(e.target).offset();
   var x = e.offsetX === undefined ? e.clientX-targetOffset.left : e.offsetX;
   var y = e.offsetY === undefined ? e.clientY-targetOffset.top : e.offsetY;
@@ -350,16 +350,27 @@ $( "#cvs" ).mousedown( function (e) {
   }
 });
 
-$("#cvs").mouseup(releaseDrag);
-$("#cvs").mouseenter(function(e){
+$canvas.mouseup(releaseDrag);
+$canvas.mouseenter(function(e){
   cursorIn=true;
 });
-$("#cvs").mouseleave(function(e){
+$canvas.mouseleave(function(e){
   cursorIn=false;
   if(cursorOn){
     draw();
   }
   releaseDrag();
+});
+
+$(window).resize(function() {
+  width = $canvas.width();
+  height = $canvas.height();
+  $canvas.attr("width", width);
+  $canvas.attr("height", height);
+  imgX = (width/2)-65.5; // coord x of starting img
+  imgY = (height/2)-66.5;
+  objects.forEach(compute_object_width);
+  draw();
 });
 // add on touchmove on tablette
 $(window).bind('touchmove', function(jQueryEvent) {
@@ -428,7 +439,7 @@ $(window).bind('touchstart', function(jQueryEvent) {
   
   $("#imgRepeat").on('click', function(){
     cursorOn=false;
-    $( "#cvs" ).removeClass("cursor");
+    $canvas.removeClass("cursor");
     init(flow);
   });
 
