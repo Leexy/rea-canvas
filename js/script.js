@@ -174,13 +174,6 @@ $(function () {
       compute_object_width(object);
     });
     draw();
-    ctx.drawImage(img, imgX, imgY);
-    /* put opacity on canvas before the game start */
-    ctx.globalAlpha=0.2;
-    ctx.fillStyle="black"; 
-    ctx.fillRect(0,0,width,height);
-    /* delete opacity after the game started */
-    ctx.globalAlpha=1; 
   }
   //Function that draws text 
   function draw()
@@ -221,6 +214,15 @@ $(function () {
     }
     if (cursorOn && cursorIn) {
       ctx.drawImage(CURSOR_IMAGE, cursorPosition.x, cursorPosition.y);
+    }
+    if(!cursorOn){
+      ctx.drawImage(img, imgX, imgY);
+      /* put opacity on canvas before the game start */
+      ctx.globalAlpha=0.2;
+      ctx.fillStyle="black"; 
+      ctx.fillRect(0,0,width,height);
+      /* delete opacity after the game started */
+      ctx.globalAlpha=1; 
     }
   }
 
