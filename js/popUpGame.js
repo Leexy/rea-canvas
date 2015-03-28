@@ -5,7 +5,7 @@ $(function () {
 	/* pop up instruction */
 	function showPopUp() {
 	//show the pop up
-	$('#popup_instruction').fadeIn().css({ 'width': 610, 'height': 755});
+	$('#popup_instruction').fadeIn().css({ 'width': 448, 'height': 555});
 
 	//get the margin to center the pop up
 	var popMargTop = ($('#popup_instruction').height() )/2;

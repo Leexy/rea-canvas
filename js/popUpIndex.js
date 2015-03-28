@@ -1,7 +1,7 @@
 $(function () {					   		   
 	$('a.poplight').on('click', function() {
 		//show the pop up
-		$('#popup_credit').fadeIn().css({ 'width': 544, 'height': 744});
+		$('#popup_credit').fadeIn().css({ 'width': 398, 'height': 544});
 		
 		//get the margin to center the pop up
 		var popMargTop = ($('#popup_credit').height() )/2;

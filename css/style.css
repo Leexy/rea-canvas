@@ -91,7 +91,7 @@ html,body{
 .rightDivMiddle
 {
 	height: 50%;
-	margin-bottom: 50%;
+	margin-bottom: 20%;
 }
 .rightDivMiddle>.icone
 {
@@ -153,8 +153,8 @@ html,body{
 	position: absolute;
 }
 #imgPlay{
-  margin-top: 660px;
-  margin-left: 190px;
+	margin-top: 465px;
+  	margin-left: 125px;
 }
 #cvsDL{
   	margin-top: 515px;
