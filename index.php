@@ -56,7 +56,7 @@
     <h3>News</h3><h1>Break</h1>
   </div>
   <h5>Canvas experiments</h5>
-  <h3 class="sstitre">informations absurdes &amp; poésie </h3>
+  <h3 class="sstitre">Plateforme de poésie générative </h3>
 
 </div>
 <!-- catégories -->

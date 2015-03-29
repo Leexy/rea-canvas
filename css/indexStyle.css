@@ -359,7 +359,7 @@ video#bgvid {
 {
   width: 50%;
   margin-left: 50%;
-  margin-top: 10%;
+  margin-top: 15%;
   z-index: 5;
   position: absolute;
 }
@@ -493,6 +493,7 @@ footer
   z-index: 12;
   text-align: center;
   width: 100%;
+  margin-top: 40px;
   font-size: 0.7em;
   letter-spacing: 0.1em;
 }
